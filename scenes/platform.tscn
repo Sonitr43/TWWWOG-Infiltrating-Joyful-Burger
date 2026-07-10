@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bobypmek56t3u"]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=1400235731]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1692664247]

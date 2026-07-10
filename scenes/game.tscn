@@ -1,0 +1,67 @@
+[gd_scene format=4 uid="uid://ocn1yuirw8x8"]
+
+[ext_resource type="PackedScene" uid="uid://br6fpc40prgc4" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://6qvv04tawp12" path="res://assets/sprites/tilesets/Level 1.png" id="2_yqjtg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
+resource_name = "lv1"
+texture = ExtResource("2_yqjtg")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+0:4/0 = 0
+4:4/0 = 0
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -2, 8, 3, -8, -3)
+2:5/0 = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -2, -8, -2, -8, 3, 8, 3)
+3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -2, -8, 3, 8, -3)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/size_in_atlas = Vector2i(1, 3)
+5:0/0 = 0
+6:1/size_in_atlas = Vector2i(1, 2)
+6:1/0 = 0
+6:1/0/texture_origin = Vector2i(0, 8)
+
+[sub_resource type="TileSet" id="TileSet_a7611"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_lbhrr")
+
+[node name="Game" type="Node2D" unique_id=389401844]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1779150661]
+tile_map_data = PackedByteArray("AAD//wAAAAABAAAAAAD//wEAAAABAAEAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAEAAAD+/wAAAAABAAAAAAD+/wEAAAABAAEAAAABAAAAAAABAAAAAAABAAEAAAABAAEAAAACAAAAAAACAAAAAAACAAEAAAACAAEAAAAAAAAAAAABAAAAAAAAAAEAAAABAAEAAAD9/wMAAAAAAAIAAAD+/wMAAAABAAIAAAD//wMAAAABAAIAAAAAAAMAAAABAAIAAAABAAMAAAABAAIAAAACAAMAAAACAAIAAAD9/wIAAAAAAAEAAAD+/wIAAAABAAEAAAD//wIAAAABAAEAAAAAAAIAAAABAAEAAAABAAIAAAABAAEAAAACAAIAAAACAAEAAAACAP//AAAAAAQAAAADAAAAAAABAAUAAAAEAAAAAAACAAUAAAAHAAAAAAADAAUAAAAIAP//AAAEAAQAAAAIAAAAAAADAAEAAAAIAAEAAAADAAIAAAAFAAAAAAACAAUAAAAGAAAAAAACAAUAAAD9//3/AAAAAAIAAAABAP3/AAACAAIAAAD+//3/AAABAAIAAAD///3/AAABAAIAAAAAAP3/AAABAAIAAAD9//z/AAAAAAAAAAD+//z/AAABAAAAAAD///z/AAABAAAAAAAAAPz/AAABAAAAAAABAPz/AAACAAAAAAAIAAIAAAADAAIAAAAIAAMAAAADAAMAAAANAAAAAAAAAAAAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAIAAAAOAAAAAAABAAAAAAAOAAEAAAABAAEAAAAOAAIAAAABAAEAAAAOAAMAAAABAAIAAAAPAAAAAAABAAAAAAAPAAEAAAABAAEAAAAPAAIAAAABAAEAAAAPAAMAAAABAAIAAAAQAAAAAAABAAAAAAAQAAEAAAABAAEAAAAQAAIAAAABAAEAAAAQAAMAAAABAAIAAAARAAAAAAABAAAAAAARAAEAAAABAAEAAAARAAIAAAABAAEAAAARAAMAAAABAAIAAAASAAAAAAABAAAAAAASAAEAAAABAAEAAAASAAIAAAABAAEAAAASAAMAAAABAAIAAAATAAAAAAABAAAAAAATAAEAAAABAAEAAAATAAIAAAABAAEAAAATAAMAAAABAAIAAAAOAP//AAAEAAAAAAAQAP//AAAEAAEAAAATAP7/AAAFAAAAAAAUAAAAAAABAAAAAAAUAAEAAAABAAEAAAAUAAIAAAABAAEAAAAUAAMAAAABAAIAAAAVAAAAAAABAAAAAAAVAAEAAAABAAEAAAAVAAIAAAABAAEAAAAVAAMAAAABAAIAAAAWAP//AAAGAAEAAAAWAAAAAAACAAAAAAAWAAEAAAACAAEAAAAWAAIAAAACAAEAAAAWAAMAAAACAAIAAAD///v/AAAEAAIAAAA=")
+tile_set = SubResource("TileSet_a7611")
+
+[node name="Player" parent="." unique_id=51128095 instance=ExtResource("1_uwrxv")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=637751372]
+position = Vector2(1, -14)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
