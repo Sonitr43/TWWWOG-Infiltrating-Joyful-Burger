@@ -1,18 +1,18 @@
-[gd_scene format=3 uid="uid://cgcofj6h6x0jt"]
+[gd_scene format=3 uid="uid://bobypmek56t3u"]
 
-[ext_resource type="Texture2D" uid="uid://6qvv04tawp12" path="res://assets/sprites/tilesets/Level 1.png" id="1_uhk53"]
+[ext_resource type="Texture2D" uid="uid://6qvv04tawp12" path="res://assets/sprites/tilesets/Level 1.png" id="1_ba0x2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7611"]
-size = Vector2(32, 9)
+size = Vector2(48, 10)
 
 [node name="Platform" type="AnimatableBody2D" unique_id=1400235731]
+collision_layer = 512
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1692664247]
-texture = ExtResource("1_uhk53")
+texture = ExtResource("1_ba0x2")
 region_enabled = true
-region_rect = Rect2(64, 48, 32, 10)
+region_rect = Rect2(64, 64, 48, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=842150137]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_a7611")
 one_way_collision = true
