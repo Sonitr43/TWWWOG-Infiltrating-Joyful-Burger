@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://4k1q188g4o0m"]
 
-[ext_resource type="PackedScene" uid="uid://br6fpc40prgc4" path="res://scenes/player.tscn" id="1_rbwr6"]
+[ext_resource type="Script" uid="uid://cecx0wril1te" path="res://scripts/remember_player_character_choice.gd" id="1_swnse"]
 [ext_resource type="Texture2D" uid="uid://6qvv04tawp12" path="res://assets/sprites/tilesets/Level 1.png" id="2_ehx8j"]
 [ext_resource type="PackedScene" uid="uid://bobypmek56t3u" path="res://scenes/level elements/platforms/platform.tscn" id="3_of487"]
 [ext_resource type="PackedScene" uid="uid://dlcyn6ee23wh8" path="res://scenes/level elements/kill_zone.tscn" id="4_bmkqp"]
@@ -284,7 +284,7 @@ terrain_set_0/terrain_1/name = "one_way_ground"
 terrain_set_0/terrain_1/color = Color(1.4439226e-07, 0.24679711, 0.3814441, 1)
 sources/0 = SubResource("TileSetAtlasSource_lbhrr")
 
-[sub_resource type="Curve2D" id="Curve2D_jxj3l"]
+[sub_resource type="Curve2D" id="Curve2D_bna1h"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50)
@@ -297,9 +297,7 @@ point_count = 2
 distance = -16.0
 
 [node name="Level_Template" type="Node2D" unique_id=389401844]
-
-[node name="Player" parent="." unique_id=51128095 instance=ExtResource("1_rbwr6")]
-z_index = 5
+script = ExtResource("1_swnse")
 
 [node name="Level" type="Node" parent="." unique_id=1211035574]
 
@@ -324,7 +322,7 @@ position = Vector2(87, -74)
 
 [node name="MovingPlatformLarge" parent="Level/Platforms/Moving" unique_id=1460042835 instance=ExtResource("4_jxj3l")]
 position = Vector2(-94, -75)
-curve = SubResource("Curve2D_jxj3l")
+curve = SubResource("Curve2D_bna1h")
 
 [node name="Boundaries" type="Node" parent="Level" unique_id=1887616079]
 
@@ -346,5 +344,3 @@ shape = SubResource("WorldBoundaryShape2D_jxj3l")
 [node name="ExitArea" parent="Level" unique_id=87365100 instance=ExtResource("5_6ynow")]
 position = Vector2(87, -96)
 input_pickable = false
-
-[connection signal="body_entered" from="Level/Boundaries/KillZone" to="Player" method="_on_kill_zone_body_entered"]

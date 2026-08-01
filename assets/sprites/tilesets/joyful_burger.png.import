@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mwj5bbwbm76b"
-path="res://.godot/imported/JoyFul Burger.png-d661bd3c470a43e8ad67a5bad842099e.ctex"
+uid="uid://d2wauuqyr7b0d"
+path="res://.godot/imported/joyful_burger.png-688dec887fa3b74f1c03faf958abdbd0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/tiles/JoyFul Burger.png"
-dest_files=["res://.godot/imported/JoyFul Burger.png-d661bd3c470a43e8ad67a5bad842099e.ctex"]
+source_file="res://assets/sprites/tilesets/joyful_burger.png"
+dest_files=["res://.godot/imported/joyful_burger.png-688dec887fa3b74f1c03faf958abdbd0.ctex"]
 
 [params]
 
