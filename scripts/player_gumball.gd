@@ -13,6 +13,12 @@ var current_state: State = State.IDLE
 # Creem una variable per a l'estat actual en què es pugui trobar el jugador, i per defecte
 # el deixem en l'inactiu.
 
+# VARIABLES PER ESCALAR
+var alreadyClimbed = false
+# Bool que determina si ja hem escalat. 
+var climbing = false
+# Bool que dtermina si estem escalant.
+
 func update_movement(delta: float) -> void:
 	# AJUPIR-SE
 	if is_on_floor() && Input.is_action_pressed("move_down"):
@@ -40,25 +46,45 @@ func update_movement(delta: float) -> void:
 		coyote_timer.stop()
 		# Parem el temporitzador coyote.
 	
-	## ESCALAR PARETS + GRAVETAT
-	#var climbing = false
-	#var alreadyClimbed = false
-	#if is_on_wall_only() && Input.is_action_pressed("run") && Input.is_action_pressed("move_up") && not climbing && not alreadyClimbed:
-		#climb_timer.start()
-		#climbing = true
-		#alreadyClimbed = true
-		#current_state = State.CLIMB
-		#velocity.y = jump/8
-		#print("Escalant...")
-		#if climb_timer.time_left < 1 and climb_timer.time_left >= 0.98:
-			#print("Caient!")
-			#climb_timer.stop()
-			#climbing = false
-			#Input.action_release("move_up")
-	#if climbing == false:
-	## Sinó (AFEGIR GRAVETAT AL SALT)
-		#if is_on_floor():
-			#alreadyClimbed = false
+	# ESCALAR PARETS + GRAVETAT
+	var wants_to_climb = (
+		is_on_wall_only()
+		&& Input.is_action_pressed("run")
+		&& Input.is_action_pressed("move_up")
+		&& not alreadyClimbed
+		&& not Input.is_action_pressed("move_down")
+	)
+	# Variable del tipus bool amb les condicions per a començar l'escalada (només es detecta un cop).
+	
+	if wants_to_climb && not climbing:
+	# Si volem començar l'escalada i el joc no detecta que estem escalant:
+		climb_timer.start()
+		# Començem el temporitzador de l'escalada.
+		current_state = State.CLIMB
+		# Canviem l'estat al d'escalar.
+		climbing = true
+		# Declarem que ja estem escalant.
+		
+	if climbing:
+	# Si estem escalant:
+		velocity.y = jump/4
+		# Augmentem progresivament la nostra posició en l'eix vertical.
+		if Input.is_action_just_released("run") or Input.is_action_just_released("move_up") or not is_on_wall():
+		# Si deixem de córrer, o de pulsar el botó d'amunt, o ja no estem en una paret: 
+			climb_timer.stop()
+			# Detenim el temporitzador d'escalar.
+			alreadyClimbed = true
+			# Declarem que ja hem escalat.
+			climbing = false
+			# Declarem que ja no estem escalant.
+			current_state = State.FALL
+			# Canviem l'estat al de caure.
+			
+	if alreadyClimbed == true and is_on_floor():
+	# Si ja hem escalat i estem al terra:
+		alreadyClimbed = false
+		# Reiniciem la variable que detecta si ja hem escalat.
+		
 	if current_state == State.JUMP:
 	# Si l'estat actual és el del salt:
 		velocity.y += gravity * delta
@@ -76,6 +102,18 @@ func update_movement(delta: float) -> void:
 			velocity.y *= 0.5
 			# Li dividim la velocitat vertical per la meitat.
 			# Això serveix per poder fer un salt amb una alçada variable.
+	
+func _on_climb_timer_timeout() -> void:
+# Funció per a detectar quan s'acaba el temporitzador de l'escalada.
+	if climbing:
+	# Si estem escalant:
+		print("Caient!")
+		alreadyClimbed = true
+		# Declarem que ja hem escalat.
+		climbing = false
+		# Declarem que ja no estem escalant.
+		current_state = State.FALL
+		# Canviem l'estat al de caure.
 	
 func update_states() -> void:
 # Funció per manejar les canvis d'estat del jugador.

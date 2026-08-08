@@ -206,4 +206,8 @@ wait_time = 0.2
 one_shot = true
 
 [node name="ClimbTimer" type="Timer" parent="." unique_id=457736393]
+process_callback = 0
+wait_time = 2.0
 one_shot = true
+
+[connection signal="timeout" from="ClimbTimer" to="." method="_on_climb_timer_timeout"]

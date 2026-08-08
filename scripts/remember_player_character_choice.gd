@@ -22,5 +22,9 @@ func _ready() -> void:
 		# Si la variable té de valor 1 (el personatge és Darwin):
 			new_player = darwin_player.instantiate()
 			# Iniciem l'escena de Darwin.
+		_:
+		# Si la variable té qualsevol altre valor:
+			new_player = gumball_player.instantiate()
+			# Iniciem l'escena de Gumball per evitar que peti el joc.
 	add_child(new_player)
 	# Afegim el node del jugador a l'escena del nivell.
