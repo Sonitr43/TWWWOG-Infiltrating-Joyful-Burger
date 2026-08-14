@@ -26,10 +26,9 @@ extends CharacterBody2D
 func _physics_process(delta: float) -> void:
 # Funció similar a process() (s'executa constantment), però dissenyada per
 # a les físiques.
-	var isDead = kill_zone.isDead
 	# Utilitzant el node de mort, obtenim, des de l'script del node, el valor de la variable que determina si el
 	# jugador ha mort o no.
-	if not isDead:
+	if not GameManager.isDead:
 	# Per evitar que el jugador es pugui moure quan ha mort, col·loquem la resta del codi
 	# dins d'aquest condicional.
 		handle_input()

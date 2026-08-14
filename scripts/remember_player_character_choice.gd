@@ -1,5 +1,4 @@
 # Script pels nivells per saber quin personatge carregar segons la nostra elecció.
-
 extends Node2D
 
 var gumball_player = preload("res://scenes/player_gumball.tscn")

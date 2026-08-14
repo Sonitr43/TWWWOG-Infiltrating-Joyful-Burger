@@ -32,7 +32,7 @@ collision_layer = 512
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=600742043]
 texture = ExtResource("1_hoguf")
 region_enabled = true
-region_rect = Rect2(64, 64, 48, 10)
+region_rect = Rect2(64, 48, 48, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=49783842]
 shape = SubResource("RectangleShape2D_juqjv")

@@ -11,7 +11,7 @@ collision_layer = 512
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1692664247]
 texture = ExtResource("1_ba0x2")
 region_enabled = true
-region_rect = Rect2(64, 64, 48, 10)
+region_rect = Rect2(64, 48, 48, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=842150137]
 shape = SubResource("RectangleShape2D_a7611")

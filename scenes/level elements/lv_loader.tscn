@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://b1aqde1wpli6m"]
+
+[ext_resource type="Script" uid="uid://cksh5c3dis6th" path="res://scripts/lv_loader.gd" id="1_ovndp"]
+[ext_resource type="FontFile" uid="uid://me3qtpdaq7w5" path="res://assets/fonts/old_windows.ttf" id="1_qsh3t"]
+[ext_resource type="Texture2D" uid="uid://foq0n8bib15m" path="res://assets/sprites/Gumball.png" id="2_r8vm1"]
+[ext_resource type="Texture2D" uid="uid://b7bejnp5c1575" path="res://assets/sprites/Darwin.png" id="3_bgy18"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kut22"]
+atlas = ExtResource("3_bgy18")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7611"]
+atlas = ExtResource("2_r8vm1")
+region = Rect2(0, 32, 32, 32)
+
+[node name="LevelLoader" type="Control" unique_id=1597424618]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ovndp")
+
+[node name="Background" type="ColorRect" parent="." unique_id=392874444]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="LevelText" type="Label" parent="." unique_id=521814025]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3125
+anchor_top = 0.20555556
+anchor_right = 0.6875
+anchor_bottom = 0.32222223
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_qsh3t")
+theme_override_font_sizes/font_size = 96
+metadata/_edit_use_anchors_ = true
+
+[node name="DarwinContainer" type="HBoxContainer" parent="." unique_id=1433127034]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.40625
+anchor_top = 0.41111112
+anchor_right = 0.59375
+anchor_bottom = 0.5888889
+offset_left = 90.0
+offset_top = 48.0
+offset_right = -90.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(30, 16)
+metadata/_edit_use_anchors_ = true
+
+[node name="Darwin" type="TextureRect" parent="DarwinContainer" unique_id=521995600]
+layout_mode = 2
+texture = SubResource("AtlasTexture_kut22")
+
+[node name="LifesDarwin" type="Label" parent="DarwinContainer" unique_id=737978965]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qsh3t")
+theme_override_font_sizes/font_size = 16
+
+[node name="GumballContainer" type="HBoxContainer" parent="." unique_id=396189228]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.40625
+anchor_top = 0.41111112
+anchor_right = 0.59375
+anchor_bottom = 0.5888889
+offset_left = 90.0
+offset_top = 48.0
+offset_right = -90.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(30, 16)
+metadata/_edit_use_anchors_ = true
+
+[node name="Gumball" type="TextureRect" parent="GumballContainer" unique_id=622576982]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a7611")
+
+[node name="LifesGumball" type="Label" parent="GumballContainer" unique_id=2125704862]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qsh3t")
+theme_override_font_sizes/font_size = 16
+
+[node name="LoadingTimer" type="Timer" parent="." unique_id=1615423786]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="LoadingTimer" to="." method="_on_loading_timer_timeout"]
