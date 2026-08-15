@@ -107,7 +107,6 @@ func _on_climb_timer_timeout() -> void:
 # Funció per a detectar quan s'acaba el temporitzador de l'escalada.
 	if climbing:
 	# Si estem escalant:
-		print("Caient!")
 		alreadyClimbed = true
 		# Declarem que ja hem escalat.
 		climbing = false

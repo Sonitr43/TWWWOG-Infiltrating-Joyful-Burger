@@ -60,6 +60,12 @@ func _ready() -> void:
 	
 	loading_timer.start()
 	# Comencem el temporitzador.
+	
+	if GameManager.lv_completed:
+	# Si el jugador ha passat de nivell:
+		GameManager.checkpoint_pos = Vector2(-999, -999)
+		GameManager.previous_checkpoint_node = null
+		# Reiniciem les variables dels checkpoints.
 
 func _on_loading_timer_timeout() -> void:
 # Funció per a quan s'acaba el temporitzador.

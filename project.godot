@@ -84,8 +84,10 @@ move_up={
 2d_physics/layer_1="player"
 2d_physics/layer_9="ground"
 2d_physics/layer_10="one_way_ground"
+2d_physics/layer_11="water"
 2d_physics/layer_17="kill_zone"
 2d_physics/layer_18="transitions"
+2d_physics/layer_19="checkpoint"
 
 [physics]
 

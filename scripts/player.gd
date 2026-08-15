@@ -11,8 +11,6 @@ extends CharacterBody2D
 # Utilitzem "export" per poder modificar els valors d'aquestes variables des de la pestanya
 # "Inspector" de Godot.
 
-@onready var kill_zone: Area2D = $"../Level/Boundaries/KillZone"
-# Carreguem el node de quan el jugador mor.
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 # Carreguem el node de les animacions del jugador.
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
@@ -22,6 +20,15 @@ extends CharacterBody2D
 # d'una plataforma dins un petit marge de temps.
 @onready var fall_ground_timer: Timer = $FallGroundTimer
 # Carreguem el node del temporitzador per a caure a través de terra del tipus "one way".
+
+func _ready() -> void:
+# Funció que s'executa quan el node i els seus fills entren a l'arbre d'escenes.
+	# CHECKPOINTS
+	if GameManager.checkpoint_pos != Vector2(-999, -999):
+	# Si la posició en la qual volem que el jugador aparegui no coincideix amb la predeterminada (és
+	# a dir, el jugador ha activat un checkpoint):
+		global_position = GameManager.checkpoint_pos
+		# Igualem la posició global del jugador amb la posició en la qual volem que el jugador aparegui.
 
 func _physics_process(delta: float) -> void:
 # Funció similar a process() (s'executa constantment), però dissenyada per
@@ -89,14 +96,15 @@ func handle_input() -> void:
 	# Si s'acava el temporitzador:
 		set_collision_mask_value(10, true)
 		# Reactivem la màscara de col·lisió del terra.
-		
-func update_movement(_delta: float) -> void:	
+
+func update_movement(_delta: float) -> void:
+# Funció per actualitzar la posició del jugador.
 	pass
-		
+
 func update_states() -> void:
 # Funció per manejar les canvis d'estat del jugador.
 	pass
-		
+
 func update_animations() -> void:
 # Funció per a reproduir les animacions del personatge.
 	pass

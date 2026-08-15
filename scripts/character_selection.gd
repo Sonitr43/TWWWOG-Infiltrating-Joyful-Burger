@@ -8,7 +8,9 @@ var transitioning: bool = false
 func _ready() -> void:
 # Funció per quan el node entra a l'arbre d'escenes.
 	GameManager.lifes = 3
-	# Reiniciem el comptador de les vides del jugador per si el jugador ha tingut un Game Over.
+	GameManager.checkpoint_pos = Vector2(-999, -999)
+	GameManager.previous_checkpoint_node = null
+	# Reiniciem diverses variables per si el jugador ha tingut un Game Over.
 
 func _on_button_gumball_pressed() -> void:
 # Funció per quan es prema el botó de Gumball.
