@@ -1,21 +1,27 @@
 [gd_scene format=3 uid="uid://bsidhdb6n75fn"]
 
 [ext_resource type="Script" uid="uid://ned7v0xeu6yl" path="res://scripts/exit_area.gd" id="1_odi8n"]
+[ext_resource type="Texture2D" uid="uid://ci30qpwuxgmmq" path="res://assets/sprites/tilesets/tutorial.png" id="2_utc4f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7611"]
+atlas = ExtResource("2_utc4f")
+region = Rect2(48, 0, 32, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7611"]
+size = Vector2(16, 48)
 
 [node name="ExitArea" type="Area2D" unique_id=87365100]
 collision_layer = 131072
+input_pickable = false
 script = ExtResource("1_odi8n")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1702730894]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-color = Color(16.369772, 0.7946341, 9.999991, 1)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2108011462]
+position = Vector2(0, -9)
+texture = SubResource("AtlasTexture_a7611")
+offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404816052]
+position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_a7611")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -9,4 +9,4 @@ func _on_body_entered(_body: Node2D) -> void:
 	GameManager.lv_completed = true
 	# Li fem saber al joc que el jugador ha passat de nivell.
 	get_tree().change_scene_to_file("res://scenes/level elements/lv_loader.tscn")
-	# Passem a la pantalla de càrrega 
+	# Passem a la pantalla de càrrega.

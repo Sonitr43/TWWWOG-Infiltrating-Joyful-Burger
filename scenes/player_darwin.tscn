@@ -160,6 +160,35 @@ animations = [{
 "loop": 1,
 "name": &"walk",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myvgr")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_33vsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah5td")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eaj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6rp2")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_8hq7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbwhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apk0n")
+}],
+"loop": 1,
+"name": &"walk_water",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
@@ -182,8 +211,9 @@ script = ExtResource("2_gedfd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1856959955]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_4xsrt")
-animation = &"idle"
+animation = &"walk_water"
 autoplay = "idle"
+frame_progress = 0.14655484
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=640852436]
 z_index = 5

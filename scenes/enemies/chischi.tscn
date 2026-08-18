@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dl4mct4v4ls55"]
+
+[ext_resource type="Texture2D" uid="uid://b4hrsxq3dw1ql" path="res://assets/sprites/enemies/chischi.png" id="1_rygvy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7611"]
+atlas = ExtResource("1_rygvy")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_juqjv"]
+radius = 6.0
+height = 24.0
+
+[node name="Chischi" type="Sprite2D" unique_id=438965458]
+position = Vector2(0, -16)
+texture = SubResource("AtlasTexture_a7611")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1353304975]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1729385622]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_juqjv")

@@ -1,4 +1,6 @@
-# Script pels nivells per saber quin personatge carregar segons la nostra elecció.
+# Script pels nivells.
+class_name Levels
+
 extends Node2D
 
 var gumball_player = preload("res://scenes/player_gumball.tscn")
@@ -9,6 +11,9 @@ var new_player: PlayerBase
 # Creem una variable del tipus "Player" (la classe de l'escena del personatge base).
 
 func _ready() -> void:
+	# Creem una variable per el node TileMapLayer del foreground dels nivells, per la mecànica de nedar
+	# de Darwin.
+	# RECORDAR LA SELECCIÓ DELS PERSONATGES
 	match GameManager.PlayerCharacter:
 	# Comparem el valor de la variable dins de l'script global la qual indica amb quin personatge
 	# volem jugar:

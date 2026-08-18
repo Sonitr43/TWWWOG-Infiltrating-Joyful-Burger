@@ -3,9 +3,12 @@ class_name PlayerBase
 extends CharacterBody2D
 
 @export var speed: int = 125
+@export var swim_speed: int = speed*0.6
 @export var max_speed: float = speed * 1.5
 @export var jump: float = -325.0
+@export var jump_water: float = jump/3
 @export var gravity: int = speed*8
+@export var gravity_water: float = speed*1.1
 @export var down_gravity_factor: float = 1.1
 @export var acceleration: float = 7.5
 # Utilitzem "export" per poder modificar els valors d'aquestes variables des de la pestanya
@@ -20,6 +23,13 @@ extends CharacterBody2D
 # d'una plataforma dins un petit marge de temps.
 @onready var fall_ground_timer: Timer = $FallGroundTimer
 # Carreguem el node del temporitzador per a caure a través de terra del tipus "one way".
+
+@onready var tileMap: TileMapLayer = get_tree().root.find_child("Foreground", true, false)
+# Amb una variable, fem referència al node TileMapLayer de les tiles exteriors (foreground).
+# Obtenim el node arrel de l'arbre de l'escena, i després amb find_child() busquem el TileMapLayer.
+# El segon paràmetre de find_child() indica que volem que la recerca sigui recursiva (busca en
+# descendents), i el tercer paràmetre indica que no volem que la recerca es limiti a nodes "owned" del
+# node actual; busca normalment en l'arbre sense restringir-ho a ownership.
 
 func _ready() -> void:
 # Funció que s'executa quan el node i els seus fills entren a l'arbre d'escenes.
@@ -52,8 +62,8 @@ func handle_input() -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	# Obtenim la direcció del jugador: -1 (esquerra), 1 (dreta), 0 (no es prema res)
 	
-	if Input.is_action_just_pressed("jump"):
-	# Si el jugador prema el botó de saltar i està al terra:
+	if Input.is_action_just_pressed("jump") && not "Water" in get_tile_data():
+	# Si el jugador prema el botó de saltar i no està sota l'aigua:
 		jump_buffer_timer.start()
 		# Comencem el temporitzador del salt.
 	
@@ -66,9 +76,15 @@ func handle_input() -> void:
 	# MOVIMENT HORITZONTAL
 	if direction:
 	# Si el jugador es mou:
-		velocity.x = move_toward(velocity.x, speed * direction, acceleration)
-		# Actualitzem la seva posició X i l'afegim acceleració.
-	if direction && Input.is_action_pressed("run"):
+		if "Water" in get_tile_data() && GameManager.PlayerCharacter == 1:
+		# Si estem jugant com a Darwin i estem nedant:
+			velocity.x = move_toward(velocity.x, swim_speed * direction, acceleration*0.5)
+			# Ens movem més lentament.
+		else:
+		# Sinó (moviment normal):
+			velocity.x = move_toward(velocity.x, speed * direction, acceleration)
+			# Actualitzem la seva posició X i l'afegim acceleració.
+	if direction && Input.is_action_pressed("run") && not "Water" in get_tile_data():
 	# Si el jugador es mou i està pulsant el botó de córrer:
 		velocity.x = move_toward(velocity.x, max_speed * direction, acceleration*1.1)
 		# Actualitzem la seva posició X i augmentem la seva velocitat una mica més lentament.
@@ -108,3 +124,24 @@ func update_states() -> void:
 func update_animations() -> void:
 # Funció per a reproduir les animacions del personatge.
 	pass
+
+func get_tile_data(targetPosition = global_position):
+# Funció que detecta el tipus de tile en la que el jugar està situat, i retorna una cadena depenent del "Type".
+# El "Type" és per saber si la tile és "Water" (tile sota l'aigua) o "WaterTop" (tile per entrar/sortir de l'aigua).
+# Té de paràmetre "targetPosition", el qual per defecte retorna la posició global del node del personatge.
+	var tilePos = tileMap.local_to_map(targetPosition)
+	# Amb una variable, convertim posició mon (Vector2) a coordenades de cel·la (grid) del tilemap (Vector2i).
+	# "targetPosition" està en coordenades globals (Vector2), i les passem a Vector2i utilitzant local_to_map().
+	# El resultat de la variable, per tant, es un Vector2i que identifica la cel·la del tilemap correspondent.
+	var tileData: TileData = tileMap.get_cell_tile_data(tilePos)
+	# Variable per obtenir informació de la tile TilePos, i només existirà (no serà null) si hi ha una tile.
+	
+	if tileData:
+	# Si hi ha informació dins de TilePos:
+		if tileData.get_custom_data("Type") != "":
+		# Si el tipus de data és "Type" i no està buit:
+			return tileData.get_custom_data("Type")
+			# Retornem el tipus de data "Type".
+			
+	return ""
+	# Si no existeix tileData, o Type està buit, retorna una cadena buida.

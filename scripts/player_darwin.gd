@@ -1,9 +1,11 @@
+# Script pel personatge Darwin.
+
 class_name PlayerDarwin
 # Declarem l'escena de Darwin, que hereta la del jugador base, com a una classe.
 extends PlayerBase
 # Aquest script és una extensió del que té el node pare de l'escena del jugador base.
 
-enum State {IDLE, WALK, RUN, JUMP, FALL, DOWN}
+enum State {IDLE, WALK, RUN, JUMP, FALL, DOWN, SWIM_IDLE, SWIM_JUMP, SWIM_FALL, SWIM_WALK}
 # Utilitzant el tipus de dada "enum", guardem diverses constants consecutives que representen
 # els estats en els quals el personatge pot estar. Cada estat té un int associat (0, 1, 2,...)
 var current_state: State = State.IDLE
@@ -26,8 +28,15 @@ func update_movement(delta: float) -> void:
 			# Desaccelerem més lentament.
 		
 	# SALTAR
-	if (is_on_floor() || coyote_timer.time_left > 0) && jump_buffer_timer.time_left > 0:
-	# Si el jugador està al terra (o el temporitzador coyote no s'ha acabat) i el temporitzador del salt no s'ha acabat:
+	if "Water" in get_tile_data() && Input.is_action_just_pressed("jump"):
+	# Si estem sota l'aigua i saltem:
+		velocity.y = jump_water
+		# Nedem.
+		current_state = State.SWIM_JUMP
+		# Canviem a l'estat de saltar sota l'aigua.
+	
+	if "WaterTop" in get_tile_data() && Input.is_action_just_pressed("jump") || (is_on_floor() || coyote_timer.time_left > 0) && jump_buffer_timer.time_left > 0:
+	# Si el jugador està sortint de l'aigua, o està al terra (o el temporitzador coyote no s'ha acabat) i el temporitzador del salt no s'ha acabat:
 		velocity.y = jump
 		# Saltem.
 		current_state = State.JUMP
@@ -38,17 +47,39 @@ func update_movement(delta: float) -> void:
 		# Parem el temporitzador coyote.
 		
 	# VARIAR L'ALÇÀRIA DEL SALT
-	elif velocity.y < 0.0:
-	# Si la velocitat vertical és major a 0 (el jugador no està caient):
+	elif velocity.y < 0.0 && not "Water" in get_tile_data():
+	# Si la velocitat vertical és major a 0 (el jugador no està caient), i no està nedant:
 		if Input.is_action_just_released("jump"):
-		# Y si el jugador deixa anar el botó de saltar:
+		# I si el jugador deixa anar el botó de saltar:
 			velocity.y *= 0.5
 			# Li dividim la velocitat vertical per la meitat.
 			# Això serveix per poder fer un salt amb una alçada variable.
-			
-	velocity.y += gravity * delta
-	# Li donem gravetat a la velocitat vertical.
 	
+	# VARIAR LA GRAVETAT
+	if not "Water" in get_tile_data():
+	# Si no estem nedant:
+		velocity.y += gravity * delta
+		# Li donem gravetat a la velocitat vertical.
+	else:
+	# Sinó:
+		velocity.y += gravity_water * delta
+		# Fem la gravetat menor.
+	
+	if "WaterTop" in get_tile_data():
+	# Si just hem entrat a l'aigua:
+		if current_state == State.FALL:
+		# Si estem en l'estat de caure:
+			velocity.y *= 0.25
+			# Dividim per 4 la velocitat vertical.
+		if current_state == State.DOWN:
+		# Si estem en l'estat d'ajupir-se:
+			Input.action_release("move_down")
+			# Deixem anar el botó d'abaix.
+			velocity.y *= 0.25
+			# Dividim per 4 la velocitat vertical.
+			current_state = State.SWIM_FALL
+			# Canviem a l'estat de caure sota l'aigua.
+			
 func update_states() -> void:
 # Funció per manejar les canvis d'estat del jugador.
 	var running: bool = Input.is_action_pressed("run")
@@ -61,6 +92,11 @@ func update_states() -> void:
 		# Si estem quiets i la velocitat horitzontal canvia de 0:
 			current_state = State.WALK
 			# Canviem l'estat al de caminar.
+			
+		State.SWIM_IDLE when velocity.x != 0:
+		# Si estem quiets sota l'aigua i la velocitat horitzontal canvia de 0:
+			current_state = State.SWIM_WALK
+			# Canviem l'estat al de caminar submarí.
 			
 		State.WALK when running:
 		# Si estem caminant i premem el botó de córrer:
@@ -79,6 +115,11 @@ func update_states() -> void:
 				# Canviem a l'estat de caure.
 				coyote_timer.start()
 				# Comencem el temporitzador coyote.
+				
+		State.SWIM_WALK when velocity.x == 0:
+		# Dins de l'estat de caminar submarí, si la velocitat horitzontal es torna 0:
+			current_state = State.SWIM_IDLE
+			# Canviem a l'estat inactiu submarí.
 		
 		State.RUN:
 		# Dins de l'estat de córrer:
@@ -103,32 +144,64 @@ func update_states() -> void:
 			# Canviem a l'estat de caure.
 		# (Quan saltem, la Y és negativa. Quan caiem, es fa positiva)
 		
-		State.FALL when is_on_floor():
-		# Si estem en l'estat de caure i arribem al terra:
+		State.SWIM_JUMP when velocity.y > 0:
+		# Si estem en l'estat del salt submarí i la velocitat vertical es fa menor de 0:
+			current_state = State.SWIM_FALL
+			# Canviem a l'estat de caure submarí.
+		
+		State.FALL:
+		# Si estem en l'estat de caure 
+			if is_on_floor():
+			# Si arribem al terra:
+				if velocity.x == 0:
+				# Si no ens estem movent:
+					current_state = State.IDLE
+					# Canviem a l'estat inactiu.
+				else:
+				# Sinó:
+					if running:
+					# Si el botó de córrer està pres:
+						current_state = State.RUN
+						# Canviem a l'estat de córrer.
+					else:
+					# Sinó està pres:
+						current_state = State.WALK
+						# Canviem a l'estat de caminar.
+			if "Water" in get_tile_data():
+			# Si estem en l'aigua:
+				current_state = State.SWIM_FALL
+				# Canviem a l'estat de caure sota l'aigua.
+				
+		State.SWIM_FALL:
+		# Si estem en l'estat de caure sota l'aigua:
+			if is_on_floor():
+			# Si estem al terra:
+				if velocity.x == 0:
+				# Si ens quedem quiets:
+					current_state = State.SWIM_IDLE
+					# Canviem a l'estat inactiu submarí.
+				else:
+				# Sinó:
+					current_state = State.SWIM_WALK
+					# Canviem a l'estat de caminar submarí.
+					
+		State.DOWN when Input.is_action_just_released("move_down"):
+		# Si estem en l'estad d'ajupir-se i hem deixat anar el botó d'abaix:
 			if velocity.x == 0:
-			# Si no ens estem movent:
+			# Si estem quiets:
 				current_state = State.IDLE
 				# Canviem a l'estat inactiu.
 			else:
 			# Sinó:
 				if running:
-				# Si el botó de córrer està pres:
+				# Si estem corrent:
 					current_state = State.RUN
 					# Canviem a l'estat de córrer.
 				else:
-				# Sinó està pres:
+				# Sinó:
 					current_state = State.WALK
 					# Canviem a l'estat de caminar.
 					
-		State.DOWN when Input.is_action_just_released("move_down"):
-			if velocity.x == 0:
-				current_state = State.IDLE
-			else:
-				if running:
-					current_state = State.RUN
-				else:
-					current_state = State.WALK
-		
 func update_animations() -> void:
 # Funció per a reproduir les animacions del personatge.
 	var current_frame_run = animated_sprite.get_frame()
@@ -164,3 +237,7 @@ func update_animations() -> void:
 		State.JUMP: animated_sprite.play("jump")
 		State.FALL: animated_sprite.play("fall")
 		State.DOWN: animated_sprite.play("idle")
+		State.SWIM_IDLE: animated_sprite.play("idle")
+		State.SWIM_JUMP: animated_sprite.play("jump")
+		State.SWIM_FALL: animated_sprite.play("fall")
+		State.SWIM_WALK: animated_sprite.play("walk_water")
