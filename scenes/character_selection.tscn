@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://kj5whyeho01a" path="res://scripts/character_selection.gd" id="1_dd54q"]
 [ext_resource type="Texture2D" uid="uid://cda5w8a10qsew" path="res://assets/sprites/gui/character_selection.png" id="1_q54je"]
-[ext_resource type="Script" uid="uid://wmunhcibpi5m" path="res://scripts/button.gd" id="3_o5bvq"]
+[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/scrolling_bg.tscn" id="2_wh1ae"]
+[ext_resource type="Script" uid="uid://wmunhcibpi5m" path="res://scripts/button_char_select.gd" id="3_o5bvq"]
 [ext_resource type="FontFile" uid="uid://me3qtpdaq7w5" path="res://assets/fonts/old_windows.ttf" id="4_l56u2"]
 [ext_resource type="AudioStream" uid="uid://b6nlxv5vuj52o" path="res://assets/music/character_select.ogg" id="5_7xed0"]
 
@@ -31,7 +32,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dd54q")
 
+[node name="ScrollingBG" parent="." unique_id=2097112336 instance=ExtResource("2_wh1ae")]
+layer = -1
+
 [node name="Label" type="Label" parent="." unique_id=1600667123]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -44,6 +49,8 @@ offset_right = 448.0
 offset_bottom = -172.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_l56u2")
 theme_override_font_sizes/font_size = 64
 text = "Selecciona un personatge"

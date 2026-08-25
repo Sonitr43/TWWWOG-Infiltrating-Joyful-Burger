@@ -3,10 +3,10 @@ class_name PlayerBase
 extends CharacterBody2D
 
 @export var speed: int = 125
-@export var swim_speed: int = speed*0.6
+@export var swim_speed: float = speed*0.6
 @export var max_speed: float = speed * 1.5
 @export var jump: float = -325.0
-@export var jump_water: float = jump/3
+@export var jump_water: float = jump/4
 @export var gravity: int = speed*8
 @export var gravity_water: float = speed*1.1
 @export var down_gravity_factor: float = 1.1
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 # a les físiques.
 	# Utilitzant el node de mort, obtenim, des de l'script del node, el valor de la variable que determina si el
 	# jugador ha mort o no.
-	if not GameManager.isDead:
+	if GameManager.shouldMove:
 	# Per evitar que el jugador es pugui moure quan ha mort, col·loquem la resta del codi
 	# dins d'aquest condicional.
 		handle_input()
@@ -56,6 +56,11 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		# Aquest mètode està dins de la classe "CharacterBody2D", és a dir, la del jugador.
 		# Serveix per manejar lliscaments.
+	else:
+		velocity.x = 0
+		animated_sprite.play("idle")
+		# Per evitar bugs amb les animacions, fem que el jugador executi l'animació d'estat inactiu,
+		# per si ha activat un diàleg mentre es movia.
 
 func handle_input() -> void:
 # Funció per a manejar l'input del jugador i moure el personatge.
@@ -97,7 +102,7 @@ func handle_input() -> void:
 		velocity.x = move_toward(velocity.x, 0, acceleration*1.5)
 		# Deixem d'actualitzar la seva posició X suaument.
 	
-	# CAURE D'UN TERRA DEL TIPUS "ONE WAY"
+	# CAURE D'UN TERRA D'UN ÚNIC SENTIT
 	if velocity.x == 0 && Input.is_action_just_pressed("move_down"):
 	# Si no ens estem movent i premem el botó per mirar abaix:
 		fall_ground_timer.start()

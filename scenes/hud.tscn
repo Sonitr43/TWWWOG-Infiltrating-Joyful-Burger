@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://tigr5yfa4y5e"]
+
+[ext_resource type="Script" uid="uid://cko6q3prgo82m" path="res://scripts/hud.gd" id="1_oo0fn"]
+[ext_resource type="LabelSettings" uid="uid://fn3p1u6mlo41" path="res://assets/fonts/hud_label_settings.tres" id="2_5ysmq"]
+
+[node name="HUD" type="CanvasLayer" unique_id=486236189]
+
+[node name="Control" type="Control" parent="." unique_id=56651134]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 80)
+offset_transform_enabled = true
+script = ExtResource("1_oo0fn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Lifes" type="Label" parent="Control" unique_id=548887692]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8734375
+anchor_top = 0.89166665
+anchor_right = 0.9609375
+anchor_bottom = 0.9305556
+grow_horizontal = 0
+grow_vertical = 0
+text = "Vides: "
+label_settings = ExtResource("2_5ysmq")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Score" type="Label" parent="Control" unique_id=703161478]
+layout_mode = 0
+anchor_left = 0.0390625
+anchor_top = 0.06944445
+anchor_right = 0.1765625
+anchor_bottom = 0.108333334
+text = "Puntuació: "
+label_settings = ExtResource("2_5ysmq")
+metadata/_edit_use_anchors_ = true
+
+[node name="HP" type="Label" parent="Control" unique_id=14415871]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9109375
+anchor_top = 0.06944445
+anchor_right = 0.9609375
+anchor_bottom = 0.108333334
+grow_horizontal = 0
+text = "HP: "
+label_settings = ExtResource("2_5ysmq")
+metadata/_edit_use_anchors_ = true

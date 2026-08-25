@@ -15,57 +15,60 @@ extends Control
 # Creem una variable pel comptador de vides de Gumball.
 
 func _ready() -> void:
-# Funció que s'executa quan el node i els seus fills han entrat a l'arbre d'escenes. 
-	GameManager.isDead = false
-	# Declarem la variable que determina si el jugador ha mort o no com a falsa per si el jugador
-	# ha mort, així pot tornar a moure's.
-	match GameManager.PlayerCharacter:
-	# Comparem el valor de la variable dins de l'script global la qual indica amb quin personatge
-	# estem jugar:
-	# (Aquest valor l'obtenim després de seleccionar un personatge).
-		0:
-		# Si la variable té de valor 0 (el personatge és Gumball):
-			lifes_gumball.text = "x " + str(GameManager.lifes)
-			# Actualitzem el text de les vides de Gumball per mostrar-les.
-			darwin_container.hide()
-			# Amaguem el contenidor de Darwin.
-		1:
-		# Si la variable té de valor 1 (el personatge és Darwin):
-			lifes_darwin.text = "x " + str(GameManager.lifes)
-			# Actualitzem el text de les vides de Darwin per mostrar-les.
-			gumball_container.hide()
-			# Amaguem el contenidor de Gumball.
-		_:
-		# Si la variable té qualsevol altre valor:
-			lifes_gumball.text = "x " + str(GameManager.lifes)
-			# Actualitzem el text de les vides de Gumball per mostrar-les.
-			darwin_container.hide()
-			# Amaguem el contenidor de Darwin.
-	
-	match GameManager.current_lv:
-	# Comparem el valor de la variable dins de l'script global que determina en quin nivell es
-	# trova el jugador, això per determinar què escrivim en el text que mostra quin nivell es jugarà.
-		1:
-		# Si estem en el primer nivell, ho escrivim.
-			level_text.text = "NIVELL 1-1"
-		2:
-		# Si estem en el segon nivell, ho escrivim.
-			level_text.text = "NIVELL 1-2"
-		3:
-		# Si estem en el tercer nivell, ho escrivim.
-			level_text.text = "NIVELL 1-3"
-		_:
-		# Si estem en un nivell desconegut, ho escrivim.
-			level_text.text = "NIVELL  -1"
-	
-	loading_timer.start()
-	# Comencem el temporitzador.
-	
-	if GameManager.lv_completed:
-	# Si el jugador ha passat de nivell:
-		GameManager.checkpoint_pos = Vector2(-999, -999)
-		GameManager.previous_checkpoint_node = null
-		# Reiniciem les variables dels checkpoints.
+# Funció que s'executa quan el node i els seus fills han entrat a l'arbre d'escenes.
+	if GameManager.current_lv == -1:
+		get_tree().change_scene_to_file("res://scenes/levels/tutorial.tscn")
+	else:
+		GameManager.shouldMove = true
+		# Declarem la variable que determina si el jugador es pot moure o no com a vertadera per si el
+		# jugador ha mort, així pot tornar a moure's.
+		match GameManager.PlayerCharacter:
+		# Comparem el valor de la variable dins de l'script global la qual indica amb quin personatge
+		# estem jugar:
+		# (Aquest valor l'obtenim després de seleccionar un personatge).
+			0:
+			# Si la variable té de valor 0 (el personatge és Gumball):
+				lifes_gumball.text = "x " + str(GameManager.lifes)
+				# Actualitzem el text de les vides de Gumball per mostrar-les.
+				darwin_container.hide()
+				# Amaguem el contenidor de Darwin.
+			1:
+			# Si la variable té de valor 1 (el personatge és Darwin):
+				lifes_darwin.text = "x " + str(GameManager.lifes)
+				# Actualitzem el text de les vides de Darwin per mostrar-les.
+				gumball_container.hide()
+				# Amaguem el contenidor de Gumball.
+			_:
+			# Si la variable té qualsevol altre valor:
+				lifes_gumball.text = "x " + str(GameManager.lifes)
+				# Actualitzem el text de les vides de Gumball per mostrar-les.
+				darwin_container.hide()
+				# Amaguem el contenidor de Darwin.
+		
+		match GameManager.current_lv:
+		# Comparem el valor de la variable dins de l'script global que determina en quin nivell es
+		# trova el jugador, això per determinar què escrivim en el text que mostra quin nivell es jugarà.
+			1:
+			# Si estem en el primer nivell, ho escrivim.
+				level_text.text = "NIVELL 1-1"
+			2:
+			# Si estem en el segon nivell, ho escrivim.
+				level_text.text = "NIVELL 1-2"
+			3:
+			# Si estem en el tercer nivell, ho escrivim.
+				level_text.text = "NIVELL 1-3"
+			_:
+			# Si estem en un nivell desconegut, ho escrivim.
+				level_text.text = "NIVELL  -1"
+		
+		loading_timer.start()
+		# Comencem el temporitzador.
+		
+		if GameManager.lv_completed:
+		# Si el jugador ha passat de nivell:
+			GameManager.checkpoint_pos = Vector2(-999, -999)
+			GameManager.previous_checkpoint_node = null
+			# Reiniciem les variables dels checkpoints.
 
 func _on_loading_timer_timeout() -> void:
 # Funció per a quan s'acaba el temporitzador.
@@ -73,7 +76,7 @@ func _on_loading_timer_timeout() -> void:
 	# Comparem la variable del nivell en el què el jugador es trova per saber qual carreguem.
 		1:
 		# Si estem en el primer, el carreguem.
-			get_tree().change_scene_to_file("res://scenes/levels/test.tscn")
+			get_tree().change_scene_to_file("res://scenes/levels/level_1.tscn")
 		2:
 		# Si estem en el segon, el carreguem.
 			get_tree().change_scene_to_file("res://scenes/levels/level_2.tscn")

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d1ab48x1sgyrb"]
+
+[node name="BlackTransition" type="CanvasLayer" unique_id=448101337]
+
+[node name="Control" type="Control" parent="." unique_id=631228922]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=790880005]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true

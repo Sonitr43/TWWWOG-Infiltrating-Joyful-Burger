@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dvq3c4flsstyp"]
+
+[ext_resource type="Texture2D" uid="uid://bokibac55ubu8" path="res://assets/sprites/tilesets/skybox.png" id="1_e0bwi"]
+
+[node name="Skybox" type="CanvasLayer" unique_id=1714870061]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1053589492]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_e0bwi")
+metadata/_edit_use_anchors_ = true

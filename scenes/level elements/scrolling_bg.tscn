@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://brpjinq1db7ef"]
+
+[ext_resource type="Shader" uid="uid://c4wa6gd67q728" path="res://shaders/scroll.gdshader" id="1_xo07p"]
+[ext_resource type="Texture2D" uid="uid://db23aosyq4ph" path="res://assets/sprites/tilesets/scrolling_bg.png" id="2_xo07p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_frgjb"]
+shader = ExtResource("1_xo07p")
+shader_parameter/speed = 0.2
+
+[node name="ScrollingBG" type="CanvasLayer" unique_id=2097112336]
+
+[node name="Control" type="Control" parent="." unique_id=1182965001]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=678288818]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_frgjb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xo07p")
+stretch_mode = 1

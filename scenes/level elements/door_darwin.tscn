@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cm61xyxvrhymp"]
+
+[ext_resource type="Script" uid="uid://dw4si3nkkrgnc" path="res://scripts/door.gd" id="1_d44f0"]
+[ext_resource type="Texture2D" uid="uid://ci30qpwuxgmmq" path="res://assets/sprites/tilesets/tutorial.png" id="2_88y52"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juqjv"]
+atlas = ExtResource("2_88y52")
+region = Rect2(48, 80, 32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kut22"]
+size = Vector2(32, 48)
+
+[node name="Door" type="Area2D" unique_id=1306108286]
+script = ExtResource("1_d44f0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1961212854]
+position = Vector2(0, -24)
+texture = SubResource("AtlasTexture_juqjv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1332877226]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_kut22")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=675992215]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

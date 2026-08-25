@@ -45,6 +45,13 @@ func update_movement(delta: float) -> void:
 		# Parem el temporitzador del salt.
 		coyote_timer.stop()
 		# Parem el temporitzador coyote.
+		
+	if "WaterTop" in get_tile_data():
+	# Si el jugador intenta entrar en aigua:
+		velocity.y = jump
+		# Saltem per evitar que entri.
+		current_state = State.JUMP
+		# Canviem l'estat al de saltar.
 	
 	# ESCALAR PARETS + GRAVETAT
 	var wants_to_climb = (

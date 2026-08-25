@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bwfcv5ql58dxy"]
+
+[ext_resource type="Script" uid="uid://c6ltyujm282uo" path="res://scripts/larry.gd" id="1_k61ck"]
+[ext_resource type="Texture2D" uid="uid://dct2atss76eq7" path="res://assets/sprites/gui/dialogue_bubble.png" id="2_k61ck"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_enpqq"]
+load_path = "res://.godot/imported/larry.png-03165cb6a717ecf93f93ab4417bf0706.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5icc"]
+atlas = SubResource("CompressedTexture2D_enpqq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kut22"]
+size = Vector2(48, 64)
+
+[node name="Larry" type="Area2D" unique_id=2131686194]
+script = ExtResource("1_k61ck")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=396705946]
+position = Vector2(0, -32)
+texture = SubResource("AtlasTexture_y5icc")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=64118401]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_kut22")
+
+[node name="DialogueBubble" type="Sprite2D" parent="." unique_id=1883716808]
+visible = false
+position = Vector2(0, -80)
+texture = ExtResource("2_k61ck")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1908518551]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

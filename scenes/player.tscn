@@ -22,7 +22,7 @@ script = ExtResource("2_qhqgy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1856959955]
 position = Vector2(0, -16)
-animation = &"brake"
+animation = &""
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=640852436]

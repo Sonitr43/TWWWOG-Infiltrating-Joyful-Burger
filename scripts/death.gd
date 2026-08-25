@@ -9,7 +9,7 @@ class_name Death
 
 func playerDies() -> void:
 # Funció que s'executa quan el jugador mor.
-	GameManager.isDead = true
+	GameManager.shouldMove = false
 	# Declarem que el jugador ha mort, per tant ja no ens podem moure.
 	timer.start()
 	# Comencem un temporitzador que en acabar-se ens retorna a l'inici del nivell.
