@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b0n6cgot62peq"]
+
+[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/scrolling_bg.tscn" id="1_m5sf4"]
+[ext_resource type="Script" uid="uid://b8ow10ugv2sbh" path="res://scripts/extras.gd" id="1_xs1if"]
+[ext_resource type="FontFile" uid="uid://me3qtpdaq7w5" path="res://assets/fonts/old_windows.ttf" id="2_xs1if"]
+[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/return_to_menu_button.tscn" id="3_iqkc7"]
+[ext_resource type="AudioStream" uid="uid://86ncm55qyutr" path="res://assets/sounds/snd_select.wav" id="5_iqkc7"]
+
+[node name="Extras" type="Control" unique_id=1639423479]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xs1if")
+
+[node name="ScrollingBG" parent="." unique_id=2097112336 instance=ExtResource("1_m5sf4")]
+layer = -1
+
+[node name="TextureRect" parent="ScrollingBG/Control" parent_id_path=PackedInt32Array(2097112336, 1182965001) index="0" unique_id=678288818]
+modulate = Color(0.45, 1, 0.49583328, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2112486435]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.259375
+anchor_top = 0.3888889
+anchor_right = 0.740625
+anchor_bottom = 0.6111111
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+metadata/_edit_use_anchors_ = true
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer" unique_id=1410990952]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_xs1if")
+theme_override_font_sizes/font_size = 64
+text = "CRÈDITS"
+
+[node name="LvSelectButton" type="Button" parent="VBoxContainer" unique_id=879324035]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_xs1if")
+theme_override_font_sizes/font_size = 64
+text = "SELECTOR DE NIVELLS"
+
+[node name="ReturnToMenuButton" parent="." unique_id=1759334569 instance=ExtResource("3_iqkc7")]
+layout_mode = 1
+anchor_left = 0.0265625
+anchor_top = 0.8666667
+anchor_right = 0.1359375
+anchor_bottom = 0.9583333
+
+[node name="SelectSFX" type="AudioStreamPlayer" parent="." unique_id=1042973014]
+stream = ExtResource("5_iqkc7")
+
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LvSelectButton" to="." method="_on_lv_select_button_pressed"]
+
+[editable path="ScrollingBG"]

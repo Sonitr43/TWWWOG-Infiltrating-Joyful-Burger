@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://g6d4knrsvxry"]
+
+[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/scrolling_bg.tscn" id="1_1octt"]
+[ext_resource type="FontFile" uid="uid://bs5cbekjginbs" path="res://assets/fonts/vcr.ttf" id="1_lcs0l"]
+[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/return_to_menu_button.tscn" id="3_md1pp"]
+[ext_resource type="AudioStream" uid="uid://isupx611sdtf" path="res://assets/music/story.mp3" id="4_wq8l7"]
+
+[node name="Story" type="Control" unique_id=2116087836]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollingBG" parent="." unique_id=2097112336 instance=ExtResource("1_1octt")]
+layer = -1
+
+[node name="TextureRect" parent="ScrollingBG/Control" parent_id_path=PackedInt32Array(2097112336, 1182965001) index="0" unique_id=678288818]
+modulate = Color(0.64019245, 0.66488504, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1447682701]
+layout_mode = 0
+anchor_left = 0.16875
+anchor_right = 0.83125
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=540042172]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1625
+anchor_right = 0.8375
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=115089163]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16875
+anchor_top = 0.011111111
+anchor_right = 0.83125
+anchor_bottom = 0.98888886
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1434773765]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.178125
+anchor_right = 0.821875
+anchor_bottom = 0.95555556
+offset_top = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_lcs0l")
+theme_override_font_sizes/normal_font_size = 24
+text = "En una ciutat nomenada Elmor viuen dos germans: Gumball, un gat blau, i Darwin, un peix taronja. Un dia en el col·legi, els hi donen una lliçó sobre els efectes negatius que el menjar no saludable pot provocar, especialment el menjar de Joyful Burger, una franquícia de restaurants de menjar ràpid. Allò sorprèn en un inici a Gumball, però ràpidament ho deixa anar. No obstant això, a Darwin l’impacta significativament. Després de classe, ell proposa a Gumball anar a sopar fora.
+
+Al carrer, són bombardejats d’anuncis de Joyful Burger, la qual cosa fa que Gumball vulgui menjar-se una hamburguesa. En Darwin, però, el porta a un restaurant on venen amanides. Després de demanar l’ordre al caixer del restaurant Larry i que els hi donés la susdita amanida, s’adonen que el restaurant és simplement un Joyful Burguer, només amb diferent nom i els menjars són servits de manera diferent. Darwin, confós, li pregunta a Larry si just acaba de reciclar una hamburguesa, però mentrestant en Gumball estava per menjar-se-la. El seu germà ràpidament li dona a l’hamburguesa una puntada de peu, esclafant-la al sostre. En sortir, Gumball, que es mostrava negligent en un principi a menjar “bé”, com és el seu germà qui l’incita a fer-ho, termina accedint-hi finalment. Llavors, ells dos s’embarquen en una aventura per trobar menjar saludable…
+
+Al llarg de la seva recerca per menjar millor, intenten comprar en un supermercat coses que se suposen que són més favorables, però en realitat no ho són. Al final intenten comprar fruites i verdures, però s’adonen que són caríssimes i terminen podent adquirir només un alvocat. En sortir del supermercat, l’alvocat es caduca instantàniament i els dos germans es queden únicament amb la llavor de la fruita. Gumball es mostra molt ressentit, però, mentrestant, tenir la llavor li dona una idea a Darwin, la qual consisteix a plantar aquesta llavor i de més tipus per poder finalment aconseguir menjar.
+
+Al seu jardí, planten les llavors de l’alvocat i de més fruites i verdures, les quals les han trobat en escombraries. Temps després, quan ja han brotat els aliments i la seva recerca semblava ja finalitzada, just apareix Larry i ho incinera tot. Confosos i rabiosos, els germans li qüestionen perquè ha fet això, i en Larry els diu que el seu cap, en Sr. Bilderburger, és propietari dels drets de les llavors que han plantat. En un brot d’ira, en Gumball li diu que vol “parlar” amb el seu cap, i en Darwin s’apunta. Larry els adverteix que no seria una bona idea fer-ho per què la seu de Joyful Burger està protegida per un munt de guàrdies i, encara si aconseguissin arribar a poder parlar amb ell, no es molestaria en escoltar-los i els expulsaria a força de les seves oficines. Sentin-se fútils, els dos germans es qüestionen com podrien enfrontar-se amb ell i detenir-lo. Llavors, Larry confessa que des de fa molt de temps el volia plantar cara i arrabassar-li el seu poder, però mai ho va fer perquè no tenia coratge per fer-ho. No obstant això, agrega que el coratge i la determinació dels dos germans l’ha motivat. Com que ell treballa en el gimnàs de la ciutat, els diu que els podria entrenar per derrotar al seu cap, perquè ha vist que tenen molt de potencial..."
+horizontal_alignment = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ReturnToMenuButton" parent="." unique_id=1759334569 node_paths=PackedStringArray("song") instance=ExtResource("3_md1pp")]
+layout_mode = 1
+anchor_left = 0.0265625
+anchor_top = 0.8666667
+anchor_right = 0.1359375
+anchor_bottom = 0.9583333
+song = NodePath("../Music")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1313261631]
+stream = ExtResource("4_wq8l7")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[editable path="ScrollingBG"]

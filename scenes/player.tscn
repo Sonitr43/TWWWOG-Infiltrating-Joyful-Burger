@@ -7,6 +7,12 @@
 radius = 2.7272725
 height = 14.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(8, 20)
+
 [node name="Player" type="CharacterBody2D" unique_id=51128095]
 z_index = 5
 collision_mask = 197376
@@ -42,3 +48,20 @@ one_shot = true
 
 [node name="FallGroundTimer" type="Timer" parent="." unique_id=251797410]
 one_shot = true
+
+[node name="HitArea" type="Area2D" parent="." unique_id=1432480621 groups=["PlayerHitArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=936741200]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_g2els")
+debug_color = Color(0, 0.7, 0.034999967, 0.41960785)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1250860807 groups=["PlayerDamageArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1527046673]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_qhqgy")
+debug_color = Color(0.28, 0, 0, 0.41960785)
+
+[node name="DamageSFX" type="AudioStreamPlayer" parent="." unique_id=554959107]
+bus = &"SFX"

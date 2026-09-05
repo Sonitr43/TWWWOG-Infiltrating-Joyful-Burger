@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://uglwooprt5d2" path="res://scripts/player_gumball.gd" id="1_466mr"]
 [ext_resource type="Script" uid="uid://c1ysqbdvr7qi1" path="res://scripts/camera_2d.gd" id="2_lvrxx"]
 [ext_resource type="Texture2D" uid="uid://foq0n8bib15m" path="res://assets/sprites/Gumball.png" id="3_gfne5"]
+[ext_resource type="AudioStream" uid="uid://babso1bc5kjb8" path="res://assets/sounds/damage.ogg" id="4_lvrxx"]
+[ext_resource type="AudioStream" uid="uid://cw5g5c52rgeug" path="res://assets/sounds/jump.ogg" id="5_gfne5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("3_gfne5")
@@ -166,6 +168,15 @@ animations = [{
 radius = 2.7272725
 height = 14.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7611"]
+size = Vector2(12, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juqjv"]
+size = Vector2(8, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_466mr"]
+size = Vector2(16, 28)
+
 [node name="Player" type="CharacterBody2D" unique_id=51128095]
 z_index = 5
 collision_mask = 197376
@@ -208,5 +219,34 @@ one_shot = true
 process_callback = 0
 wait_time = 2.0
 one_shot = true
+
+[node name="HitArea" type="Area2D" parent="." unique_id=55572267 groups=["PlayerHitArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=706992803]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_a7611")
+debug_color = Color(0, 0.7, 0.034999967, 0.41960785)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1384880556 groups=["PlayerDamageArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=986621939]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_juqjv")
+debug_color = Color(0.28, 0, 0, 0.41960785)
+
+[node name="CoinArea" type="Area2D" parent="." unique_id=2051597399 groups=["PlayerCoinArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinArea" unique_id=719679103]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_466mr")
+debug_color = Color(0.95000005, 1, 0, 0.41960785)
+
+[node name="DamageSFX" type="AudioStreamPlayer" parent="." unique_id=1783099052]
+stream = ExtResource("4_lvrxx")
+bus = &"SFX"
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="." unique_id=507704508]
+stream = ExtResource("5_gfne5")
+bus = &"SFX"
 
 [connection signal="timeout" from="ClimbTimer" to="." method="_on_climb_timer_timeout"]

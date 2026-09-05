@@ -1,14 +1,18 @@
 # Script per quan el jugador mor.
-extends Area2D
-class_name Death
-# Declarem l'escena de quan el jugador mor com a una classe.
+extends Node2D
 
 @onready var timer: Timer = $Timer
 # Creem una variable per al temporitzador i l'assignem al node Timer.
 # La propietat "one_shot" està definida com a "true" perquè s'executi només un cop el temporitzador.
+@onready var death_sfx: AudioStreamPlayer = $DeathSFX
+# Carreguem el node d'audio de l'efecte de so de mort.
 
 func playerDies() -> void:
 # Funció que s'executa quan el jugador mor.
+	death_sfx.play()
+	# Reproduïm l'efecte de so de mort.
+	AudioServer.set_bus_mute(1, true)
+	# Silenciem la música del joc.
 	GameManager.shouldMove = false
 	# Declarem que el jugador ha mort, per tant ja no ens podem moure.
 	timer.start()

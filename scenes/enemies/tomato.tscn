@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://58d7kl3ecvqv"]
+
+[ext_resource type="Script" uid="uid://c4wokgu4ma25m" path="res://scripts/walking_enemy.gd" id="1_esg70"]
+[ext_resource type="Texture2D" uid="uid://mrspjl8xsb74" path="res://assets/sprites/enemies/tomato.png" id="1_lipqg"]
+[ext_resource type="AudioStream" uid="uid://dukne4waxydut" path="res://assets/sounds/stomp.ogg" id="3_u0djj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lipqg"]
+atlas = ExtResource("1_lipqg")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esg70"]
+atlas = ExtResource("1_lipqg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0djj"]
+atlas = ExtResource("1_lipqg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a7611"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lipqg")
+}],
+"loop": 1,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esg70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0djj")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kut22"]
+size = Vector2(6, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juqjv"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7611"]
+size = Vector2(14, 2)
+
+[node name="Tomato" type="CharacterBody2D" unique_id=1207564639]
+collision_layer = 2
+collision_mask = 768
+floor_constant_speed = true
+floor_max_angle = 1.3089969
+floor_snap_length = 8.0
+script = ExtResource("1_esg70")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=614892954]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_a7611")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=774466144]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_kut22")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=2052320829]
+position = Vector2(0, -5)
+target_position = Vector2(6, 0)
+collision_mask = 256
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1875295669]
+position = Vector2(0, -5)
+target_position = Vector2(-6, 0)
+collision_mask = 256
+
+[node name="RayCastDownRight" type="RayCast2D" parent="." unique_id=323132337]
+position = Vector2(6, 0)
+target_position = Vector2(0, 10)
+collision_mask = 2816
+
+[node name="RayCastDownLeft" type="RayCast2D" parent="." unique_id=1855755754]
+position = Vector2(-6, 0)
+target_position = Vector2(0, 10)
+collision_mask = 2816
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1557387657]
+collision_layer = 2
+
+[node name="DamageBox" type="CollisionShape2D" parent="DamageArea" unique_id=88867125]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_juqjv")
+debug_color = Color(0.28, 0, 0, 0.41960785)
+
+[node name="HitArea" type="Area2D" parent="." unique_id=1810844415]
+collision_layer = 2
+
+[node name="HitBox" type="CollisionShape2D" parent="HitArea" unique_id=424124780]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_a7611")
+debug_color = Color(0, 0.7, 0.034999967, 0.41960785)
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=1856727802]
+wait_time = 0.5
+one_shot = true
+
+[node name="StompSFX" type="AudioStreamPlayer" parent="." unique_id=554962456]
+stream = ExtResource("3_u0djj")
+bus = &"SFX"
+
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
+[connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

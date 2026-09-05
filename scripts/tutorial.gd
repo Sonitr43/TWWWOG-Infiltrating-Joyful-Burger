@@ -3,7 +3,8 @@ extends Node2D
 
 @onready var color_rect: ColorRect = $BlackTransition/Control/ColorRect
 # Creem una variable i l'assignem el bloc negre que fa de transició.
-
+@onready var music: AudioStreamPlayer = $Music
+# Creem una variable per al node de l'àudio de la cançó de fons.
 var dialogue_start = preload("res://dialogues/tutorial/Larry0.dialogue")
 # Precarreguem dins d'una variable el diàleg de Larry en entrar al tutorial.
 
@@ -25,6 +26,8 @@ func _on_tween_finished() -> void:
 # Funció que s'executa quan finalitza el tween de la transició de l'inici.
 	DialogueManager.show_dialogue_balloon(dialogue_start, "start")
 	# Comencem el diàleg inicial.
+	music.play()
+	# Reproduïm la cançó.
 	
 func _on_dialogue_ended(_dialogue):
 # Funció que s'executa quan un diàleg acaba.

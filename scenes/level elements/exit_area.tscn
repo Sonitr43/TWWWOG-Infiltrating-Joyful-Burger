@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ned7v0xeu6yl" path="res://scripts/exit_area.gd" id="1_odi8n"]
 [ext_resource type="Texture2D" uid="uid://d2wauuqyr7b0d" path="res://assets/sprites/tilesets/joyful_burger.png" id="2_utc4f"]
+[ext_resource type="AudioStream" uid="uid://dsyjg6p2dh233" path="res://assets/music/course_clear.mp3" id="3_h4s2f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7611"]
 atlas = ExtResource("2_utc4f")
@@ -24,5 +25,10 @@ offset = Vector2(0, -15)
 position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_a7611")
 
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=412380705]
+stream = ExtResource("3_h4s2f")
+bus = &"Music"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]

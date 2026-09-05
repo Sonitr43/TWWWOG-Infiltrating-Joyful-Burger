@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://nh2xuavx6sd5" path="res://scripts/game_over.gd" id="1_wqhvx"]
 [ext_resource type="FontFile" uid="uid://me3qtpdaq7w5" path="res://assets/fonts/old_windows.ttf" id="1_xeevv"]
+[ext_resource type="AudioStream" uid="uid://khmpxx4pg7eq" path="res://assets/music/game_over.mp3" id="3_tbwuq"]
 
 [node name="GameOver" type="Control" unique_id=389500087]
 layout_mode = 3
@@ -13,10 +14,14 @@ grow_vertical = 2
 script = ExtResource("1_wqhvx")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1655158202]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="." unique_id=1252516799]
 layout_mode = 1
@@ -35,5 +40,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="." unique_id=2100509895]
 wait_time = 5.0
 one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1440214774]
+stream = ExtResource("3_tbwuq")
+autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

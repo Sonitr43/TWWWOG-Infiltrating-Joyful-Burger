@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://b6wqubt5xdgjw"]
+
+[ext_resource type="Script" uid="uid://cfk8w6msw2og8" path="res://scripts/options.gd" id="1_2iy26"]
+[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/scrolling_bg.tscn" id="1_yjkok"]
+[ext_resource type="FontFile" uid="uid://bs5cbekjginbs" path="res://assets/fonts/vcr.ttf" id="2_2iy26"]
+[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/return_to_menu_button.tscn" id="4_e6vpq"]
+[ext_resource type="AudioStream" uid="uid://cq6s7m8b8etaf" path="res://assets/music/options.ogg" id="4_kv8mn"]
+[ext_resource type="AudioStream" uid="uid://dvdpgclcggjh6" path="res://assets/sounds/coin.ogg" id="5_1sggn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a7611"]
+font = ExtResource("2_2iy26")
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_yjkok"]
+default_font = ExtResource("2_2iy26")
+
+[node name="Options" type="Control" unique_id=1492974091]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2iy26")
+
+[node name="ScrollingBG" parent="." unique_id=2097112336 instance=ExtResource("1_yjkok")]
+layer = -1
+
+[node name="TextureRect" parent="ScrollingBG/Control" parent_id_path=PackedInt32Array(2097112336, 1182965001) index="0" unique_id=678288818]
+modulate = Color(1, 0.5686275, 1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=928902147]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26953125
+anchor_top = 0.20208333
+anchor_right = 0.73046875
+anchor_bottom = 0.79791665
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+metadata/_edit_use_anchors_ = true
+
+[node name="FlashingLightsCheckBox" type="CheckBox" parent="VBoxContainer" unique_id=1401512328]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_2iy26")
+theme_override_font_sizes/font_size = 48
+text = "Llums intermitents"
+icon_alignment = 1
+
+[node name="Resolution" type="Label" parent="VBoxContainer" unique_id=1669076351]
+layout_mode = 2
+text = "Mesura de la finestra"
+label_settings = SubResource("LabelSettings_a7611")
+
+[node name="ResolutionButton" type="OptionButton" parent="VBoxContainer" unique_id=544997890]
+layout_mode = 2
+theme = SubResource("Theme_yjkok")
+theme_override_fonts/font = ExtResource("2_2iy26")
+theme_override_font_sizes/font_size = 24
+selected = 0
+item_count = 3
+popup/item_0/text = "1280x720"
+popup/item_0/id = 0
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1920x1080"
+popup/item_2/id = 2
+
+[node name="FullscreenCheckBox" type="CheckBox" parent="VBoxContainer" unique_id=1065882558]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_2iy26")
+theme_override_font_sizes/font_size = 48
+text = "Finestra completa"
+icon_alignment = 1
+
+[node name="VolumeLabelGeneral" type="Label" parent="VBoxContainer" unique_id=76103698]
+layout_mode = 2
+text = "Volum (General)"
+label_settings = SubResource("LabelSettings_a7611")
+
+[node name="VolumeSliderGeneral" type="HSlider" parent="VBoxContainer" unique_id=1007686919]
+layout_mode = 2
+min_value = -80.0
+max_value = 0.0
+step = 5.0
+value = -10.0
+rounded = true
+
+[node name="VolumeLabelMusic" type="Label" parent="VBoxContainer" unique_id=600469395]
+layout_mode = 2
+text = "Volum (Música)"
+label_settings = SubResource("LabelSettings_a7611")
+
+[node name="VolumeSliderMusic" type="HSlider" parent="VBoxContainer" unique_id=1247530658]
+layout_mode = 2
+min_value = -80.0
+max_value = 0.0
+step = 5.0
+rounded = true
+
+[node name="VolumeLabelSFX" type="Label" parent="VBoxContainer" unique_id=1362924027]
+layout_mode = 2
+text = "Volum (SFX)"
+label_settings = SubResource("LabelSettings_a7611")
+
+[node name="VolumeSliderSFX" type="HSlider" parent="VBoxContainer" unique_id=313665814]
+layout_mode = 2
+min_value = -80.0
+max_value = 0.0
+step = 5.0
+rounded = true
+
+[node name="ReturnToMenuButton" parent="." unique_id=1759334569 node_paths=PackedStringArray("song") instance=ExtResource("4_e6vpq")]
+layout_mode = 1
+anchor_left = 0.0265625
+anchor_top = 0.8666667
+anchor_right = 0.1359375
+anchor_bottom = 0.9583333
+song = NodePath("../Music")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=2018219036]
+stream = ExtResource("4_kv8mn")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=938169910]
+stream = ExtResource("5_1sggn")
+volume_db = -10.0
+bus = &"SFX"
+
+[connection signal="toggled" from="VBoxContainer/FlashingLightsCheckBox" to="." method="_on_flashing_lights_check_box_toggled"]
+[connection signal="item_selected" from="VBoxContainer/ResolutionButton" to="." method="_on_resolution_button_item_selected"]
+[connection signal="toggled" from="VBoxContainer/FullscreenCheckBox" to="." method="_on_fullscreen_check_box_toggled"]
+[connection signal="value_changed" from="VBoxContainer/VolumeSliderGeneral" to="." method="_on_volume_slider_general_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/VolumeSliderMusic" to="." method="_on_volume_slider_music_value_changed"]
+[connection signal="drag_started" from="VBoxContainer/VolumeSliderSFX" to="." method="_on_volume_slider_sfx_drag_started"]
+[connection signal="value_changed" from="VBoxContainer/VolumeSliderSFX" to="." method="_on_volume_slider_sfx_value_changed"]
+
+[editable path="ScrollingBG"]

@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://ci30qpwuxgmmq" path="res://assets/sprites/tilesets/tutorial.png" id="1_hbsra"]
 [ext_resource type="Script" uid="uid://dw4si3nkkrgnc" path="res://scripts/door.gd" id="1_ojdsh"]
+[ext_resource type="AudioStream" uid="uid://b0u5l6cgosmjl" path="res://assets/sounds/mus_dooropen.ogg" id="3_wy1wj"]
+[ext_resource type="AudioStream" uid="uid://kfeyt8g85cas" path="res://assets/sounds/mus_doorclose.ogg" id="4_piud4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_juqjv"]
 atlas = ExtResource("1_hbsra")
@@ -22,6 +24,14 @@ position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_kut22")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=675992215]
+
+[node name="DoorOpenedSFX" type="AudioStreamPlayer" parent="." unique_id=7791140]
+stream = ExtResource("3_wy1wj")
+bus = &"SFX"
+
+[node name="DoorClosedSFX" type="AudioStreamPlayer" parent="." unique_id=1410652311]
+stream = ExtResource("4_piud4")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

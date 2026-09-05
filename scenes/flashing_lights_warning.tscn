@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://cpuqfspcnbpmy"]
+
+[ext_resource type="FontFile" uid="uid://me3qtpdaq7w5" path="res://assets/fonts/old_windows.ttf" id="1_2bdfm"]
+[ext_resource type="Script" uid="uid://dsw8gc6aie0eo" path="res://scripts/flashing_lights_warning.gd" id="1_sis6q"]
+[ext_resource type="AudioStream" uid="uid://86ncm55qyutr" path="res://assets/sounds/snd_select.wav" id="3_q12lf"]
+
+[node name="FlashingLightsWarning" type="Control" unique_id=1598500380]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sis6q")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1252833141]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=870088808]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.30972221
+anchor_right = 0.95
+anchor_bottom = 0.69027776
+offset_bottom = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=935148833]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2bdfm")
+theme_override_font_sizes/font_size = 64
+text = "ADVERTÈNCIA
+Aquest joc conté llums intermitents.
+Vols apagar-les?"
+horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer" unique_id=2124323634]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hovered_color = Color(0.9666667, 1, 0, 1)
+theme_override_colors/font_hovered_selected_color = Color(0, 1, 0, 1)
+theme_override_colors/font_selected_color = Color(0.9666667, 1, 0, 1)
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+theme_override_fonts/font = ExtResource("1_2bdfm")
+theme_override_font_sizes/font_size = 64
+auto_width = true
+auto_height = true
+item_count = 2
+max_columns = 2
+item_0/text = "Sí"
+item_1/text = "No"
+
+[node name="SelectSFX" type="AudioStreamPlayer" parent="." unique_id=1678170323]
+stream = ExtResource("3_q12lf")
+bus = &"SFX"
+
+[connection signal="item_clicked" from="VBoxContainer/ItemList" to="." method="_on_item_list_item_clicked"]

@@ -1,6 +1,7 @@
 extends Area2D
 
 var player
+var scroll_bg
 # Creem una variable pel jugador i el fons lliscant, als quals els donem un valor en _ready().
 var is_player_close: bool = false
 # Variable per determinar si el jugador està a prop de l'àrea o no.
@@ -8,24 +9,27 @@ var transitioning: bool = false
 # Variable per indicar al joc que hem interactuat amb una porta i estem transicionant.
 @onready var color_rect: ColorRect = get_tree().root.find_child("BlackTransition", true, false).find_child("ColorRect", true, false)
 # Creem una variable i l'assignem el bloc negre que fa de transició.
-@onready var scroll_bg: TextureRect = get_tree().root.find_child("ScrollingBG", true, false).find_child("TextureRect", true, false)
-# Creem una variable per al fons lliscant.
-
 @export var destination_marker: Marker2D
 # Creem una variable per la pestanya "Inspector" de Godot per poder determinar fàcilment
 # el Marker2D de la següent/anterior porta.
 @export var destination_area: int
 # Creem una variable per la pestanya "Inspector" de Godot per poder determinar fàcilment
 # en quina àrea ens trobem per la porta.
+@onready var door_opened_sfx: AudioStreamPlayer = $DoorOpenedSFX
+@onready var door_closed_sfx: AudioStreamPlayer = $DoorClosedSFX
+# Carreguem els nodes d'àudio dels efectes de so de les portes obrint-se i tancant-se.
 
 func _ready() -> void:
 # Funció que s'executa quan el node i els seus fills entra en l'arbre d'escenes.
 	await get_tree().process_frame
 	# Esperem a que tot l'arbre d'escenes es carregui per tal de poder trovar el node del jugador.
-	
 	player = get_tree().root.find_child("Player", true, false)
 	# Obtenim el node del jugador dins de l'arbre d'escenes.
-
+	if GameManager.current_lv == 0:
+	# Si estem al tutorial:
+		scroll_bg = get_tree().root.find_child("ScrollingBG", true, false).find_child("TextureRect", true, false)
+		# Carreguem el fons lliscant.
+		
 func _on_body_entered(_body: Node2D) -> void:
 # Funció per quan un cos entra en l'àrea 2D.
 	is_player_close = true
@@ -38,6 +42,8 @@ func _on_body_exited(_body: Node2D) -> void:
 	
 func _on_transition_started():
 # Funció que s'executa quan la transició comença.
+	door_opened_sfx.play()
+	# Reproduïm l'efecte de so de la porta obrint-se.
 	transitioning = true
 	# Declarem que estem transicionant.
 	GameManager.shouldMove = false
@@ -91,12 +97,16 @@ func _process(_delta: float) -> void:
 
 func change_room() -> void:
 # Funció per poder efectuar el canvi d'habitació.
+	door_closed_sfx.play()
+	# Reproduïm l'efecte de so de la porta tancant-se.
 	player.global_position = destination_marker.global_position
 	# Canviem la posició global del jugador a la del Marker2D de la porta a la que volem passar.
 	GameManager.current_area = destination_area
 	# Actualitzem la varible dins del singleton que indica en quina àrea ens trobem.
-	update_scroll_bg()
-	# Actualitzem el fons lliscant.
+	if GameManager.current_lv == 0:
+	# Si estem al tutorial:
+		update_scroll_bg()
+		# Actualitzem el fons lliscant.
 
 func update_scroll_bg() -> void:
 # Funció per actualitzar el color del fons lliscant depenent de l'àrea del nivell en què el jugador es trobi.

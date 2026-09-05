@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://bj34im4420pal"]
+
+[ext_resource type="FontFile" uid="uid://bs5cbekjginbs" path="res://assets/fonts/vcr.ttf" id="1_0bpdh"]
+[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/scrolling_bg.tscn" id="1_2fbfq"]
+[ext_resource type="AudioStream" uid="uid://isupx611sdtf" path="res://assets/music/story.mp3" id="2_2ckv8"]
+[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/return_to_menu_button.tscn" id="3_0ctdu"]
+
+[node name="Credits" type="Control" unique_id=1425365783]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollingBG" parent="." unique_id=2097112336 instance=ExtResource("1_2fbfq")]
+layer = -1
+
+[node name="TextureRect" parent="ScrollingBG/Control" parent_id_path=PackedInt32Array(2097112336, 1182965001) index="0" unique_id=678288818]
+modulate = Color(0.64019245, 0.66488504, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=598053771]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16875
+anchor_right = 0.83125
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=725490161]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1625
+anchor_right = 0.8375
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1822501367]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16875
+anchor_top = 0.011111111
+anchor_right = 0.83125
+anchor_bottom = 0.98888886
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1550602607]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.178125
+anchor_right = 0.821875
+anchor_bottom = 0.95555556
+offset_top = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_0bpdh")
+theme_override_font_sizes/normal_font_size = 24
+text = "Sonitr43
+- Programació
+- Idees
+- Art
+- Cançó de la pantalla de selecció de personatges
+- Història
+
+La història està basada en el primer capítol de The Wonderfully Weird World of Gumball.
+
+Playtesters:
+- Häzel
+- elegheo
+- 
+- 
+- 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Música:
+- Tutorial / Menú de les opcions
+	Friday Night Funkin' - Artistic Expression
+	Kawai Sprite
+
+- Menú de la història / Menú dels crèdits
+	Sonic's Mega Collection - Extras (Remix)
+	Cançó original: Hideaki Kobayashi
+	Remix: ???
+
+- Selector de nivells
+	Vs. Dave and Bambi: Volume 1 - Character Select
+	MoldyGangstaHero
+
+- Nivells 1 i 2
+	Super Mario All Stars - Overworld (Super Mario Bros. 3)
+	Koji Kondo
+
+- Passar-se un nivell
+	Super Mario All Stars - Course Clear (Super Mario Bros. 3)
+	Koji Kondo
+
+- Nivell 3
+	Super Mario All Stars - Athletic (Super Mario Bros. 3)
+	Koji Kondo
+
+- Nivell 3 (sota l'aigua)
+	Super Mario All Stars - Underwater (Super Mario Bros. 3)
+	Koji Kondo
+
+- Pantalla final del joc
+	Sonic 3 [Alternate] - Competition Menu
+	Leila Wilson [Woofle]
+
+
+Efectes de so:
+- Super Mario Bros. 3
+- Undertale
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+The Wonderfully Weird World of Gumball és propietat de Hanna-Barbera Studios Europe Ltd."
+metadata/_edit_use_anchors_ = true
+
+[node name="ReturnToMenuButton" parent="." unique_id=1759334569 node_paths=PackedStringArray("song") instance=ExtResource("3_0ctdu")]
+layout_mode = 1
+anchor_left = 0.0265625
+anchor_top = 0.8666667
+anchor_right = 0.1359375
+anchor_bottom = 0.9583333
+song = NodePath("../Music")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=211601089]
+stream = ExtResource("2_2ckv8")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[editable path="ScrollingBG"]

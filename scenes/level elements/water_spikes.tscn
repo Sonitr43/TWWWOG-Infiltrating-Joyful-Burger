@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dlqqrvwxiaj0x"]
+
+[ext_resource type="Texture2D" uid="uid://6qvv04tawp12" path="res://assets/sprites/tilesets/Level 1.png" id="1_7eem6"]
+[ext_resource type="Script" uid="uid://b0lpiavum25ot" path="res://scripts/water_spikes.gd" id="1_dd03p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7611"]
+atlas = ExtResource("1_7eem6")
+region = Rect2(160, 32, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juqjv"]
+size = Vector2(16, 6)
+
+[node name="WaterSpikes" type="Area2D" unique_id=497779845]
+script = ExtResource("1_dd03p")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=604790713]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_a7611")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=11599957]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_juqjv")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

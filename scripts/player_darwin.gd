@@ -5,6 +5,11 @@ class_name PlayerDarwin
 extends PlayerBase
 # Aquest script és una extensió del que té el node pare de l'escena del jugador base.
 
+@onready var jump_sfx: AudioStreamPlayer = $JumpSFX
+# Carreguem el node de l'àudio de l'efecte de so de saltar.
+@onready var swim_sfx: AudioStreamPlayer = $SwimSFX
+# Carreguem el node de l'àudio de l'efecte de so de nedar.
+
 enum State {IDLE, WALK, RUN, JUMP, FALL, DOWN, SWIM_IDLE, SWIM_JUMP, SWIM_FALL, SWIM_WALK}
 # Utilitzant el tipus de dada "enum", guardem diverses constants consecutives que representen
 # els estats en els quals el personatge pot estar. Cada estat té un int associat (0, 1, 2,...)
@@ -30,6 +35,8 @@ func update_movement(delta: float) -> void:
 	# SALTAR
 	if "Water" in get_tile_data() && Input.is_action_just_pressed("jump"):
 	# Si estem sota l'aigua i saltem:
+		swim_sfx.play()
+		# Reproduïm l'efecte de so de nedar.
 		velocity.y = jump_water
 		# Nedem.
 		current_state = State.SWIM_JUMP
@@ -37,6 +44,8 @@ func update_movement(delta: float) -> void:
 	
 	if "WaterTop" in get_tile_data() && Input.is_action_just_pressed("jump") || (is_on_floor() || coyote_timer.time_left > 0) && jump_buffer_timer.time_left > 0:
 	# Si el jugador està sortint de l'aigua, o està al terra (o el temporitzador coyote no s'ha acabat) i el temporitzador del salt no s'ha acabat:
+		jump_sfx.play()
+		# Reproduïm l'efecte de so de saltar.
 		velocity.y = jump
 		# Saltem.
 		current_state = State.JUMP

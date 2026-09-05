@@ -5,6 +5,8 @@ extends PlayerBase
 
 @onready var climb_timer: Timer = $ClimbTimer
 # Carreguem el node del temporitzador de l'escalada. 
+@onready var jump_sfx: AudioStreamPlayer = $JumpSFX
+# Carreguem el node de l'audio de l'efecte de so de saltar.
 
 enum State {IDLE, WALK, RUN, JUMP, FALL, DOWN, CLIMB}
 # Utilitzant el tipus de dada "enum", guardem diverses constants consecutives que representen
@@ -37,6 +39,8 @@ func update_movement(delta: float) -> void:
 	# SALTAR
 	if (is_on_floor() || coyote_timer.time_left > 0) && jump_buffer_timer.time_left > 0:
 	# Si el jugador està al terra (o el temporitzador coyote no s'ha acabat) i el temporitzador del salt no s'ha acabat:
+		jump_sfx.play()
+		# Reproduïm l'efecte de so de saltar.
 		velocity.y = jump
 		# Saltem.
 		current_state = State.JUMP

@@ -5,16 +5,24 @@ var gumball_player = preload("res://scenes/player_gumball.tscn")
 var darwin_player = preload("res://scenes/player_darwin.tscn")
 # Precarreguem les escenes dels personatges.
 
-@onready var color_rect: ColorRect = get_tree().root.find_child("BlackTransition", true, false).find_child("ColorRect", true, false)
+@onready var black_rect: ColorRect = get_tree().root.find_child("BlackTransition", true, false).find_child("ColorRect", true, false)
 # Creem una variable i l'assignem el bloc negre que fa de transició.
+@onready var white_rect_text: Label = get_tree().root.find_child("WhiteTransition", true, false).find_child("Label", true, false)
+# Creem una variable i l'assignem el text del bloc blanc que fa de transició.
+@onready var white_rect: ColorRect = get_tree().root.find_child("WhiteTransition", true, false).find_child("ColorRect", true, false)
+# Creem una variable i l'assignem el bloc blanc que fa de transició.
 
 var new_player: PlayerBase
 # Creem una variable del tipus "Player" (la classe de l'escena del personatge base).
 
 func _ready() -> void:
-	if GameManager.current_lv != -1:
-	# Si no estem al tutorial:
-		color_rect.modulate.a = 0
+# Funció que s'executa quan el node i els seus fills entren en l'arbre d'escenes.
+	white_rect.modulate.a = 0
+	white_rect_text.modulate.a = 0
+	# Fem invisible el bloc blanc de transició i el seu text.
+	if GameManager.current_lv != 0 and GameManager.current_lv != 4:
+	# Si no estem al tutorial ni en l'últim nivell:
+		black_rect.modulate.a = 0
 		# Fem invisible el bloc negre de transició.
 
 	# RECORDAR LA SELECCIÓ DELS PERSONATGES

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cm11mgit0uhft"]
+
+[ext_resource type="Script" uid="uid://b0328qcwcuy43" path="res://scripts/heart.gd" id="1_aykv0"]
+[ext_resource type="Texture2D" uid="uid://6qvv04tawp12" path="res://assets/sprites/tilesets/Level 1.png" id="1_k54ng"]
+[ext_resource type="AudioStream" uid="uid://bjphkt4d530j1" path="res://assets/sounds/snd_heal_c.wav" id="3_bierb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7611"]
+atlas = ExtResource("1_k54ng")
+region = Rect2(144, 96, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_juqjv"]
+radius = 8.0
+
+[node name="Heart" type="Area2D" unique_id=280934535]
+collision_layer = 524288
+script = ExtResource("1_aykv0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1405605024]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_a7611")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=624241701]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_juqjv")
+
+[node name="HealSFX" type="AudioStreamPlayer" parent="." unique_id=906158585]
+stream = ExtResource("3_bierb")
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="HealSFX" to="." method="_on_heal_sfx_finished"]

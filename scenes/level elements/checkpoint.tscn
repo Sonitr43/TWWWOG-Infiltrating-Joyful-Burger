@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bcydfqgev4005" path="res://assets/sprites/tilesets/checkpoint.png" id="1_f3clu"]
 [ext_resource type="Script" uid="uid://v5ioad84hqm4" path="res://scripts/checkpoint.gd" id="2_ufvoj"]
+[ext_resource type="AudioStream" uid="uid://g1fhvcu5llfk" path="res://assets/sounds/checkpoint.ogg" id="3_gk0el"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7611"]
 size = Vector2(6, 16)
@@ -18,5 +19,9 @@ collision_layer = 262144
 shape = SubResource("RectangleShape2D_a7611")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1940894121]
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1351506932]
+stream = ExtResource("3_gk0el")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

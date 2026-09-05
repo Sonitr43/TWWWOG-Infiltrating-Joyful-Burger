@@ -8,13 +8,9 @@ extends Control
 @onready var hp: Label = $HP
 # Creem una variable pel text de la salut del HUD.
 
-func _ready() -> void:
-# Funció que s'executa quan el node i els seus fills entren en l'arbre d'escenes.
-	lifes.text = lifes.text + str(GameManager.lifes)
-	hp.text = hp.text + str(GameManager.health)
-	update_score()
-	# Actualitzem els textos de la vida, salut i puntuació.
-	
-func update_score() -> void:
-# Funció per actualitzar la puntuació.
+func _physics_process(_delta: float) -> void:
+# Funció que es crida cada frame.
+	lifes.text = "Vides: " + str(GameManager.lifes)
 	score.text = str(GameManager.score)
+	hp.text = str(GameManager.health)
+	# Actualitzem els textos de la vida, salut i puntuació.

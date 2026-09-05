@@ -1,0 +1,210 @@
+[gd_scene format=3 uid="uid://w2ouve20mpap"]
+
+[ext_resource type="Script" uid="uid://uq6ykqn6iu4c" path="res://scripts/hot_dog.gd" id="1_c513c"]
+[ext_resource type="Texture2D" uid="uid://dchdkoejdhrcv" path="res://assets/sprites/enemies/hot_dog.png" id="2_c513c"]
+[ext_resource type="AudioStream" uid="uid://dukne4waxydut" path="res://assets/sounds/stomp.ogg" id="3_e3hsq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c513c"]
+atlas = ExtResource("2_c513c")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3hsq"]
+atlas = ExtResource("2_c513c")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tvmi"]
+atlas = ExtResource("2_c513c")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdc51"]
+atlas = ExtResource("2_c513c")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdexv"]
+atlas = ExtResource("2_c513c")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjdnn"]
+atlas = ExtResource("2_c513c")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp633"]
+atlas = ExtResource("2_c513c")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o5ms"]
+atlas = ExtResource("2_c513c")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wahrx"]
+atlas = ExtResource("2_c513c")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t8mu"]
+atlas = ExtResource("2_c513c")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfa7g"]
+atlas = ExtResource("2_c513c")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a7611"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c513c")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3hsq")
+}],
+"loop": 1,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tvmi")
+}],
+"loop": 1,
+"name": &"pre-attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdc51")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_gdexv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjdnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp633")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o5ms")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_wahrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t8mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfa7g")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kut22"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juqjv"]
+size = Vector2(10, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvap4"]
+size = Vector2(19.333332, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7611"]
+size = Vector2(14, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5h73h"]
+size = Vector2(8, 34)
+
+[node name="HotDog" type="CharacterBody2D" unique_id=1207564639]
+collision_layer = 2
+collision_mask = 768
+floor_constant_speed = true
+floor_max_angle = 1.3089969
+floor_snap_length = 8.0
+script = ExtResource("1_c513c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=614892954]
+position = Vector2(0, -24)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_a7611")
+animation = &"attack"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=774466144]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_kut22")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=2052320829]
+position = Vector2(0, -13)
+target_position = Vector2(8, 0)
+collision_mask = 256
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1875295669]
+position = Vector2(0, -13)
+target_position = Vector2(-8, 0)
+collision_mask = 256
+
+[node name="RayCastDownRight" type="RayCast2D" parent="." unique_id=323132337]
+position = Vector2(8, 0)
+target_position = Vector2(0, 10)
+collision_mask = 2816
+
+[node name="RayCastDownLeft" type="RayCast2D" parent="." unique_id=1855755754]
+position = Vector2(-8, 0)
+target_position = Vector2(0, 10)
+collision_mask = 2816
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1557387657]
+position = Vector2(0, -8)
+collision_layer = 2
+
+[node name="DamageBox" type="CollisionShape2D" parent="DamageArea" unique_id=88867125]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_juqjv")
+debug_color = Color(0.28, 0, 0, 0.41960785)
+
+[node name="DamageAreaExtended" type="Area2D" parent="." unique_id=2031018343]
+position = Vector2(0, -8)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageAreaExtended" unique_id=1017837394]
+position = Vector2(-15, -14)
+shape = SubResource("RectangleShape2D_lvap4")
+debug_color = Color(0.7, 0, 0, 0.41960785)
+
+[node name="HitArea" type="Area2D" parent="." unique_id=1810844415]
+position = Vector2(0, -8)
+collision_layer = 2
+
+[node name="HitBox" type="CollisionShape2D" parent="HitArea" unique_id=424124780]
+position = Vector2(0, -18.666666)
+shape = SubResource("RectangleShape2D_a7611")
+debug_color = Color(0, 0.7, 0.034999967, 0.41960785)
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=1856727802]
+wait_time = 0.5
+one_shot = true
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=580186248]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=736317623]
+position = Vector2(-30, -17.333)
+shape = SubResource("RectangleShape2D_5h73h")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea" unique_id=163192188]
+position = Vector2(30, -17.333)
+shape = SubResource("RectangleShape2D_5h73h")
+
+[node name="StompSFX" type="AudioStreamPlayer" parent="." unique_id=1141817800]
+stream = ExtResource("3_e3hsq")
+bus = &"SFX"
+
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
+[connection signal="area_entered" from="DamageAreaExtended" to="." method="_on_damage_area_extended_area_entered"]
+[connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]

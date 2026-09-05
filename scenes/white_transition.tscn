@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cdh6cfu8bqvru"]
+
+[ext_resource type="FontFile" uid="uid://me3qtpdaq7w5" path="res://assets/fonts/old_windows.ttf" id="1_38dbb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a7611"]
+font = ExtResource("1_38dbb")
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="WhiteTransition" type="CanvasLayer" unique_id=448101337]
+
+[node name="Control" type="Control" parent="." unique_id=631228922]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=790880005]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control" unique_id=127908859]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.4611111
+anchor_right = 0.7
+anchor_bottom = 0.5388889
+offset_left = 236.0
+offset_top = 16.5
+offset_right = -236.0
+offset_bottom = -16.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "NIVELL COMPLETAT"
+label_settings = SubResource("LabelSettings_a7611")
+metadata/_edit_use_anchors_ = true

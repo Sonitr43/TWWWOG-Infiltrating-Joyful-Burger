@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bp72dj77fyonw"]
+
+[ext_resource type="FontFile" uid="uid://bs5cbekjginbs" path="res://assets/fonts/vcr.ttf" id="1_dmgvs"]
+[ext_resource type="Script" uid="uid://ta4ap6bqns0j" path="res://scripts/return_to_menu_button.gd" id="2_la5jf"]
+[ext_resource type="AudioStream" uid="uid://86ncm55qyutr" path="res://assets/sounds/snd_select.wav" id="3_4bpi2"]
+
+[node name="ReturnToMenuButton" type="Button" unique_id=1759334569]
+anchors_preset = -1
+anchor_right = 0.109375
+anchor_bottom = 0.09166667
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0.9666667, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_dmgvs")
+theme_override_font_sizes/font_size = 32
+text = "Tornar
+al menú"
+script = ExtResource("2_la5jf")
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectSFX" type="AudioStreamPlayer" parent="." unique_id=564810946]
+stream = ExtResource("3_4bpi2")
+bus = &"SFX"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://c33jsyd0vaj5l"]
 
 [ext_resource type="Script" uid="uid://kdl87ebjcokj" path="res://scripts/player_darwin.gd" id="1_cgj11"]
-[ext_resource type="Script" uid="uid://c1ysqbdvr7qi1" path="res://scripts/camera_2d.gd" id="2_gedfd"]
+[ext_resource type="Script" uid="uid://c1ysqbdvr7qi1" path="res://scripts/camera_2d.gd" id="2_cgj11"]
 [ext_resource type="Texture2D" uid="uid://b7bejnp5c1575" path="res://assets/sprites/Darwin.png" id="3_cgj11"]
+[ext_resource type="AudioStream" uid="uid://babso1bc5kjb8" path="res://assets/sounds/damage.ogg" id="4_gedfd"]
+[ext_resource type="AudioStream" uid="uid://cw5g5c52rgeug" path="res://assets/sounds/jump.ogg" id="5_x5irt"]
+[ext_resource type="AudioStream" uid="uid://dukne4waxydut" path="res://assets/sounds/stomp.ogg" id="6_myvgr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cgj11"]
 atlas = ExtResource("3_cgj11")
@@ -195,6 +198,15 @@ animations = [{
 radius = 2.7272725
 height = 14.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgj11"]
+size = Vector2(12, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gedfd"]
+size = Vector2(8, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7611"]
+size = Vector2(16, 28)
+
 [node name="Player" type="CharacterBody2D" unique_id=51128095]
 z_index = 5
 collision_mask = 197376
@@ -206,14 +218,13 @@ zoom = Vector2(4, 4)
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
-script = ExtResource("2_gedfd")
+script = ExtResource("2_cgj11")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1856959955]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_4xsrt")
-animation = &"walk_water"
+animation = &"jump"
 autoplay = "idle"
-frame_progress = 0.14655484
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=640852436]
 z_index = 5
@@ -232,3 +243,36 @@ one_shot = true
 
 [node name="FallGroundTimer" type="Timer" parent="." unique_id=251797410]
 one_shot = true
+
+[node name="HitArea" type="Area2D" parent="." unique_id=2039939737 groups=["PlayerHitArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1269379370]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_cgj11")
+debug_color = Color(0, 0.7, 0.034999967, 0.41960785)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=511465375 groups=["PlayerDamageArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=714024857]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_gedfd")
+debug_color = Color(0.28, 0, 0, 0.41960785)
+
+[node name="CoinArea" type="Area2D" parent="." unique_id=1658310462 groups=["PlayerCoinArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinArea" unique_id=511313685]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_a7611")
+debug_color = Color(0.95000005, 1, 0, 0.41960785)
+
+[node name="DamageSFX" type="AudioStreamPlayer" parent="." unique_id=627596280]
+stream = ExtResource("4_gedfd")
+bus = &"SFX"
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="." unique_id=992898352]
+stream = ExtResource("5_x5irt")
+bus = &"SFX"
+
+[node name="SwimSFX" type="AudioStreamPlayer" parent="." unique_id=414258052]
+stream = ExtResource("6_myvgr")
+bus = &"SFX"

@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cubsnd4g8322r"]
+
+[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/scrolling_bg.tscn" id="1_2epne"]
+[ext_resource type="Script" uid="uid://cyn1j6kqmedpj" path="res://scripts/level_select.gd" id="1_rif6e"]
+[ext_resource type="FontFile" uid="uid://me3qtpdaq7w5" path="res://assets/fonts/old_windows.ttf" id="2_rif6e"]
+[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/return_to_menu_button.tscn" id="4_rif6e"]
+[ext_resource type="AudioStream" uid="uid://86ncm55qyutr" path="res://assets/sounds/snd_select.wav" id="5_chg43"]
+[ext_resource type="AudioStream" uid="uid://cqpug4ceqeism" path="res://assets/music/lv_select.ogg" id="5_r77uv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a7611"]
+font = ExtResource("2_rif6e")
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_a7611"]
+
+[node name="LevelSelect" type="Control" unique_id=1658575713]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rif6e")
+
+[node name="ScrollingBG" parent="." unique_id=2097112336 instance=ExtResource("1_2epne")]
+layer = -1
+
+[node name="TextureRect" parent="ScrollingBG/Control" parent_id_path=PackedInt32Array(2097112336, 1182965001) index="0" unique_id=678288818]
+modulate = Color(0, 0.6, 1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1359553488]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.121875
+anchor_top = 0.39027777
+anchor_right = 0.878125
+anchor_bottom = 0.6097222
+offset_bottom = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=223327683]
+layout_mode = 2
+text = "SELECTOR DE NIVELL"
+label_settings = SubResource("LabelSettings_a7611")
+horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer" unique_id=1898505399]
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+theme = SubResource("Theme_a7611")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hovered_color = Color(1, 0.9837344, 0.25447002, 1)
+theme_override_colors/font_hovered_selected_color = Color(0, 1, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 64
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_rif6e")
+theme_override_font_sizes/font_size = 64
+allow_rmb_select = true
+auto_width = true
+auto_height = true
+item_count = 3
+max_columns = 4
+same_column_width = true
+icon_mode = 0
+icon_scale = 4.0
+item_0/text = "NIVELL 1"
+item_1/text = "NIVELL 2"
+item_2/text = "NIVELL 3"
+metadata/_edit_use_anchors_ = true
+
+[node name="ReturnToMenuButton" parent="." unique_id=1759334569 node_paths=PackedStringArray("song") instance=ExtResource("4_rif6e")]
+layout_mode = 1
+anchor_left = 0.0265625
+anchor_top = 0.8666667
+anchor_right = 0.1359375
+anchor_bottom = 0.9583333
+song = NodePath("../Music")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=178370342]
+stream = ExtResource("5_r77uv")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="SelectSFX" type="AudioStreamPlayer" parent="." unique_id=1939054857]
+stream = ExtResource("5_chg43")
+
+[connection signal="item_clicked" from="VBoxContainer/ItemList" to="." method="_on_item_list_item_clicked"]
+
+[editable path="ScrollingBG"]

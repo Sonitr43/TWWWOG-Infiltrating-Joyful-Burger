@@ -1,11 +1,16 @@
 [gd_scene format=3 uid="uid://dl86guqiptq88"]
 
 [ext_resource type="Script" uid="uid://clpgdxjl261ro" path="res://scripts/death.gd" id="1_0hhgj"]
+[ext_resource type="AudioStream" uid="uid://dhbpxn0e3peff" path="res://assets/sounds/death.ogg" id="2_w8wr1"]
 
-[node name="Death" type="Area2D" unique_id=334087482]
+[node name="Death" type="Node2D" unique_id=181766069]
 script = ExtResource("1_0hhgj")
 
-[node name="Timer" type="Timer" parent="." unique_id=438585298]
+[node name="Timer" type="Timer" parent="." unique_id=249357589]
 one_shot = true
+
+[node name="DeathSFX" type="AudioStreamPlayer" parent="." unique_id=2066594914]
+stream = ExtResource("2_w8wr1")
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

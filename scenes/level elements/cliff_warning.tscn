@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://u1eqkv7ubdv2"]
+
+[ext_resource type="Texture2D" uid="uid://d1vxeldr1skqn" path="res://assets/sprites/tilesets/warning_sign.png" id="1_34eyk"]
+
+[node name="CliffWarning" type="Node2D" unique_id=609897979]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2117189960]
+position = Vector2(0, -24)
+texture = ExtResource("1_34eyk")

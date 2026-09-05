@@ -23,13 +23,29 @@ extends CharacterBody2D
 # d'una plataforma dins un petit marge de temps.
 @onready var fall_ground_timer: Timer = $FallGroundTimer
 # Carreguem el node del temporitzador per a caure a través de terra del tipus "one way".
-
 @onready var tileMap: TileMapLayer = get_tree().root.find_child("Foreground", true, false)
 # Amb una variable, fem referència al node TileMapLayer de les tiles exteriors (foreground).
 # Obtenim el node arrel de l'arbre de l'escena, i després amb find_child() busquem el TileMapLayer.
 # El segon paràmetre de find_child() indica que volem que la recerca sigui recursiva (busca en
 # descendents), i el tercer paràmetre indica que no volem que la recerca es limiti a nodes "owned" del
 # node actual; busca normalment en l'arbre sense restringir-ho a ownership.
+@onready var death: Node2D = get_tree().root.find_child("Death", true, false)
+# Carreguem en una variable l'escena de quan el jugador mor.
+@onready var hud: CanvasLayer = get_tree().root.find_child("HUD", true, false)
+# Carreguem en una variable l'escena del HUD.
+@onready var damage_area: Area2D = $DamageArea
+# Carreguem el node de l'Area2D que detecta si el jugador rep dany.
+@onready var damage_sfx: AudioStreamPlayer = $DamageSFX
+# Carreguem el node de l'audio de quan el jugador rep dany.
+@onready var camera_2d: Camera2D = $Camera2D
+# Carreguem el node de la càmera del personatge.
+
+var canTakeDamage = true
+# Variable per saber si el jugador por rebre dany.
+var invincible_time: float = 3.0
+# Variable per emmagatzemar el temps que el jugador tindrà invencibilitat quan rebi dany.
+var flickering: bool = false
+# Variable per determinar si l'sprite del jugador està parpellejant.
 
 func _ready() -> void:
 # Funció que s'executa quan el node i els seus fills entren a l'arbre d'escenes.
@@ -39,14 +55,19 @@ func _ready() -> void:
 	# a dir, el jugador ha activat un checkpoint):
 		global_position = GameManager.checkpoint_pos
 		# Igualem la posició global del jugador amb la posició en la qual volem que el jugador aparegui.
+		camera_2d.position_smoothing_enabled = false
+		await get_tree().create_timer(0.2).timeout
+		camera_2d.position_smoothing_enabled = true
+		# Fem que la càmera del jugador es mogui immediatament cap a ell desactivant "position_smoothing_enabled"
+		# per 0.2 segons per si ha tocat un checkpoint, així es posiciona amunt d'ell.
 
 func _physics_process(delta: float) -> void:
 # Funció similar a process() (s'executa constantment), però dissenyada per
 # a les físiques.
 	# Utilitzant el node de mort, obtenim, des de l'script del node, el valor de la variable que determina si el
 	# jugador ha mort o no.
-	if GameManager.shouldMove:
-	# Per evitar que el jugador es pugui moure quan ha mort, col·loquem la resta del codi
+	if GameManager.shouldMove and not GameManager.level_beaten:
+	# Per evitar que el jugador es pugui moure quan ha mort o s'ha passat un nivell, col·loquem la resta del codi
 	# dins d'aquest condicional.
 		handle_input()
 		update_movement(delta)
@@ -117,6 +138,11 @@ func handle_input() -> void:
 	# Si s'acava el temporitzador:
 		set_collision_mask_value(10, true)
 		# Reactivem la màscara de col·lisió del terra.
+	
+	if "Spike" in get_tile_data():
+	# Si la tile la qual el jugador està tocant és del tipus "Spike" (punxes):
+		get_damage()
+		# El jugador rep dany.
 
 func update_movement(_delta: float) -> void:
 # Funció per actualitzar la posició del jugador.
@@ -150,3 +176,67 @@ func get_tile_data(targetPosition = global_position):
 			
 	return ""
 	# Si no existeix tileData, o Type està buit, retorna una cadena buida.
+
+func get_damage() -> void:
+# Funció que s'executa quan el jugador és atacat per un enemic.
+	if !canTakeDamage:
+	# Si el jugador no pot rebre dany:
+		return
+		# Retornem per evitar que el jugador rebi dany constantment.
+	
+	canTakeDamage = false
+	# Declarem que el jugador no pot rebre dany.
+	damage_area.monitoring = false
+	# Deixem de monitorejar l'àrea que detecta si el jugador rep dany.
+	GameManager.health -= 1
+	# Li restem 1 a la salut del jugador.
+	if GameManager.health > 0:
+		# Si el jugador no s'ha quedat sense vida:
+		# Li treiem 1 punt de vida.
+		flicker_sprite()
+		# Cridem la funció que fa parpellejar l'sprite del jugador.
+		damage_sfx.play()
+		# Reproduïm l'efecte de so de rebre dany.
+	else:
+	# Sinó:
+		death.playerDies()
+		# Cridem la funció dins de l'escena de mort per matar el jugador.
+		animated_sprite.visible = false
+		# Fem invisible l'sprite del personatge.
+		return
+		
+	await get_tree().create_timer(invincible_time).timeout
+	# Creem un temporitzador amb el temps d'invencibilitat i esperem a que s'acabi.
+	damage_area.monitoring = true
+	# Tornem a monitorejar l'àrea que detecta si el jugador rep dany.
+	canTakeDamage = true
+	# Declarem que el jugador ja pot rebre dany.
+
+func flicker_sprite():
+# Funció per fer parpellejar l'sprite del jugador.
+	if flickering:
+	# Si l'sprite de jugador està parpellejant:
+		return
+		# Sortim de la funció (si el jugador ja estava parpellejant, evitem que
+		# entri en diversos estats de parpelleig).
+
+	flickering = true
+	# Determinem que el jugador està parpellejant.
+	var time_taken: float = 0.0
+	# Variable pel temps transcorregut parpellejant.
+
+	while time_taken < (invincible_time - 0.1):
+	# Mentres que time_taken sigui menor al temps d'invencibilitat:
+	# (Li treiem 0.1 al temps per evitar que no es torni a executar la funció si el jugador
+	# rep dany constant).
+		animated_sprite.visible = not animated_sprite.visible
+		# Canviem el valor de la variable que determina si l'sprite és visible.
+		await get_tree().create_timer(0.1).timeout
+		# Creem un timer de 0.1 segons i esperem a que s'acabi.
+		time_taken += 0.1
+		# Sumem 0.1 al temps transcorregut.
+
+	animated_sprite.visible = true
+	# Forcem l'sprite del jugador com a visible.
+	flickering = false
+	# Declarem que ja no estem parpellejant.

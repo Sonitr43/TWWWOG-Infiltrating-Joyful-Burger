@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d1ab48x1sgyrb"]
 
 [node name="BlackTransition" type="CanvasLayer" unique_id=448101337]
+layer = 2
 
 [node name="Control" type="Control" parent="." unique_id=631228922]
 layout_mode = 3
