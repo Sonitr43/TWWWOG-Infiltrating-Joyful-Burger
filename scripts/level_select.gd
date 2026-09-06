@@ -1,7 +1,7 @@
 # Script per la pantalla de selecció de nivell.
 extends Control
 
-var bt_scene = load("res://scenes/black_transition.tscn").instantiate()
+var bt_scene = load("res://scenes/gui/black_transition.tscn").instantiate()
 # Carreguem en una variable l'escena de la pantalla negra de transició. No la col·loquem
 # directament en l'escena perquè sinó no funcionen els botons de l'ItemList.
 @onready var item_list: ItemList = $VBoxContainer/ItemList
@@ -49,5 +49,5 @@ func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button
 				GameManager.current_lv = 2
 			2:
 				GameManager.current_lv = 3
-		get_tree().change_scene_to_file("res://scenes/character_selection.tscn")
+		get_tree().change_scene_to_file("res://scenes/menus/character_selection.tscn")
 		 # Finalment, canviem l'escena a la de la pantalla de selecció de personatge.

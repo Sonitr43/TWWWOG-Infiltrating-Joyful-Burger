@@ -5,6 +5,8 @@ var player
 # Creem una variable pel jugador, la qual li donem un valor en _ready().
 var is_player_close: bool = false
 # Variable per determinar si el jugador està a prop de l'àrea o no.
+var hasEntered: bool = false
+# Creem un bool per determinar si el jugador ha entrat a la porta o no.
 @onready var black_rect: ColorRect = get_tree().root.find_child("BlackTransition", true, false).find_child("ColorRect", true, false)
 # Creem una variable i l'assignem el bloc negre que fa de transició.
 @onready var white_rect_text: Label = get_tree().root.find_child("WhiteTransition", true, false).find_child("Label", true, false)
@@ -37,8 +39,10 @@ func _on_body_exited(_body: Node2D) -> void:
 
 func _process(_delta: float) -> void:
 # Funció que s'executa cada frame.
-	if is_player_close and Input.is_action_just_pressed("move_up"):
+	if is_player_close and Input.is_action_just_pressed("move_up") and !hasEntered:
 	# Si el jugador està a prop i pulsa el botó d'amunt:
+		hasEntered = true
+		# Declarem que el jugador ha entrat a la porta, així no pot tornar a entrar accidentalment.
 		GameManager.current_lv += 1
 		# Li sumem 1 a la variable que emmagatzema en quin nivell ens trobem, així podem efectuar
 		# el canvi de nivell.
@@ -54,7 +58,7 @@ func _process(_delta: float) -> void:
 			# Creem un tween que fa visible el bloc negre de transició.
 			await tween.finished
 			# Esperem a que el tween finalitzi.
-			get_tree().change_scene_to_file("res://scenes/level elements/lv_loader.tscn")
+			get_tree().change_scene_to_file("res://scenes/level elements/gui/lv_loader.tscn")
 			# Passem a la pantalla de càrrega.
 		elif get_name().begins_with("JB"):
 		# Si estem en la porta de l'últim nivell:
@@ -68,7 +72,7 @@ func _process(_delta: float) -> void:
 			await tween.finished
 			await get_tree().create_timer(1).timeout
 			# Esperem a que el tween finalitzi + posem un delay d'1 segon.
-			get_tree().change_scene_to_file("res://scenes/final_screen.scn")
+			get_tree().change_scene_to_file("res://scenes/gui/final_screen.scn")
 			# Passem a la pantalla dels crèdits.
 		else:
 		# Sinó:
@@ -100,5 +104,5 @@ func _on_music_finished() -> void:
 	await tween.finished
 	await get_tree().create_timer(0.5).timeout
 	# Esperem a que s'acabi el tween + un delay de mig segon.
-	get_tree().change_scene_to_file("res://scenes/level elements/lv_loader.tscn")
+	get_tree().change_scene_to_file("res://scenes/level elements/gui/lv_loader.tscn")
 	# Passem a la pantalla de càrrega directament.

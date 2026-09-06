@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b6wqubt5xdgjw"]
 
 [ext_resource type="Script" uid="uid://cfk8w6msw2og8" path="res://scripts/options.gd" id="1_2iy26"]
-[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/scrolling_bg.tscn" id="1_yjkok"]
+[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/bgs/scrolling_bg.tscn" id="1_yjkok"]
 [ext_resource type="FontFile" uid="uid://bs5cbekjginbs" path="res://assets/fonts/vcr.ttf" id="2_2iy26"]
-[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/return_to_menu_button.tscn" id="4_e6vpq"]
+[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/gui/return_to_menu_button.tscn" id="4_e6vpq"]
 [ext_resource type="AudioStream" uid="uid://cq6s7m8b8etaf" path="res://assets/music/options.ogg" id="4_kv8mn"]
 [ext_resource type="AudioStream" uid="uid://dvdpgclcggjh6" path="res://assets/sounds/coin.ogg" id="5_1sggn"]
 

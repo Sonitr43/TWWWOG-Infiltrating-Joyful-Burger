@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cecx0wril1te" path="res://scripts/levels.gd" id="1_swnse"]
 [ext_resource type="PackedScene" uid="uid://cxwm5hbnrxrvy" path="res://scenes/enemies/cidy.tscn" id="2_4clkf"]
 [ext_resource type="Texture2D" uid="uid://6qvv04tawp12" path="res://assets/sprites/tilesets/Level 1.png" id="2_ehx8j"]
-[ext_resource type="PackedScene" uid="uid://d1ab48x1sgyrb" path="res://scenes/black_transition.tscn" id="2_lx6ao"]
-[ext_resource type="PackedScene" uid="uid://dlcyn6ee23wh8" path="res://scenes/level elements/kill_zone.tscn" id="4_bmkqp"]
+[ext_resource type="PackedScene" uid="uid://d1ab48x1sgyrb" path="res://scenes/gui/black_transition.tscn" id="2_lx6ao"]
+[ext_resource type="PackedScene" uid="uid://dlcyn6ee23wh8" path="res://scenes/level elements/hazards/kill_zone.tscn" id="4_bmkqp"]
 
 [sub_resource type="Curve2D" id="Curve2D_lx6ao"]
 resource_local_to_scene = true

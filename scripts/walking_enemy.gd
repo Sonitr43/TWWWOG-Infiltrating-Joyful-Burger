@@ -93,6 +93,17 @@ func _physics_process(delta: float) -> void:
 	# Sinó:
 		animated_sprite_2d.stop()
 		# Detenim la seva animació + tot el seu moviment.
+
+func _process(_delta: float) -> void:
+# Funció que s'executa cada frame.
+	if healthScene != null:
+	# Si l'escena del cor existeix:
+		if healthScene.isObtained:
+			# Si el jugador ha obtingut el cor:
+				await get_tree().create_timer(1).timeout
+				# Creem un temporitzador de 2 segons i esperem a que acabi.
+				queue_free()
+				# Esborrem aquest node i els seus fills directament.
 	
 func update_movement(_delta: float) -> void:
 # Funció per actualitzar el moviment dels enemics.
@@ -195,6 +206,9 @@ func _on_death_timer_timeout() -> void:
 		# Afegim el node a l'arbre d'escenes.
 		animated_sprite_2d.visible = false
 		# Amaguem l'sprite de l'enemic.
+		hit_area.monitoring = false
+		# Deixem de monitorar l'àrea de dany de l'enemic, fent que el jugador ja no pugui
+		# tornar a matar-lo.
 		await get_tree().create_timer(3).timeout
 		# Creem un temporitzador i esperem a que s'acabi.
 		flicker_sprite()
@@ -243,6 +257,3 @@ func flicker_sprite():
 				# Creem un timer de 0.1 segons i esperem a que s'acabi.
 				time_taken += 0.1
 				# Sumem 0.1 al temps transcorregut.
-	
-	queue_free()
-	# Esborrem aquest node i els seus fills directament.

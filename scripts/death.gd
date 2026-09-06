@@ -24,9 +24,9 @@ func _on_timer_timeout() -> void:
 	# Si el jugador no s'ha quedat sense vides:
 		GameManager.lifes -= 1
 		# Li treiem una.
-		get_tree().change_scene_to_file("res://scenes/level elements/lv_loader.tscn")
+		get_tree().change_scene_to_file("res://scenes/level elements/gui/lv_loader.tscn")
 		# Portem el jugador cap a la pantalla de càrregua dels nivells.
 	else:
 	# Si el jugador s'ha quedat sense vides:
-		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		get_tree().change_scene_to_file("res://scenes/gui/game_over.tscn")
 		# El portem a la pantalla de fi de joc.

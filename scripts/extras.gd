@@ -5,7 +5,7 @@ extends Control
 @onready var lv_select_button: Button = $VBoxContainer/LvSelectButton
 # Importem en unes variables els botons del menú.
 
-var bt_scene = load("res://scenes/black_transition.tscn").instantiate()
+var bt_scene = load("res://scenes/gui/black_transition.tscn").instantiate()
 # Carreguem en una variable l'escena de la pantalla negra de transició. No la col·loquem
 # directament en l'escena perquè sinó no funcionen els botons de l'ItemList.
 @onready var select_sfx: AudioStreamPlayer = $SelectSFX
@@ -40,7 +40,7 @@ func button_pressed(scene: String) -> void:
 	await fadeIn.finished
 	# Esperem a que finalitzi el tween.
 	
-	get_tree().change_scene_to_file("res://scenes/" + scene + ".tscn")
+	get_tree().change_scene_to_file("res://scenes/menus/" + scene + ".tscn")
 	# Canviem l'escena a la del menú en qüestió.
 
 func _on_credits_button_pressed() -> void:

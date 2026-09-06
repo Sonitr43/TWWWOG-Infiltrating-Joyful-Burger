@@ -1,8 +1,8 @@
 # Script pels nivells.
 extends Node
 
-var gumball_player = preload("res://scenes/player_gumball.tscn")
-var darwin_player = preload("res://scenes/player_darwin.tscn")
+var gumball_player = preload("res://scenes/players/player_gumball.tscn")
+var darwin_player = preload("res://scenes/players/player_darwin.tscn")
 # Precarreguem les escenes dels personatges.
 
 @onready var black_rect: ColorRect = get_tree().root.find_child("BlackTransition", true, false).find_child("ColorRect", true, false)

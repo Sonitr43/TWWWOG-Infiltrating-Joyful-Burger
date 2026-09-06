@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" uid="uid://cecx0wril1te" path="res://scripts/levels.gd" id="1_kw13u"]
 [ext_resource type="Texture2D" uid="uid://6qvv04tawp12" path="res://assets/sprites/tilesets/Level 1.png" id="2_85f33"]
-[ext_resource type="PackedScene" uid="uid://tigr5yfa4y5e" path="res://scenes/hud.tscn" id="2_f5esd"]
-[ext_resource type="PackedScene" uid="uid://d1ab48x1sgyrb" path="res://scenes/black_transition.tscn" id="3_53yew"]
+[ext_resource type="PackedScene" uid="uid://tigr5yfa4y5e" path="res://scenes/gui/hud.tscn" id="2_f5esd"]
+[ext_resource type="PackedScene" uid="uid://d1ab48x1sgyrb" path="res://scenes/gui/black_transition.tscn" id="3_53yew"]
 [ext_resource type="PackedScene" uid="uid://bobypmek56t3u" path="res://scenes/level elements/platforms/platform.tscn" id="3_82b8u"]
-[ext_resource type="PackedScene" uid="uid://cdh6cfu8bqvru" path="res://scenes/white_transition.tscn" id="3_k43ob"]
+[ext_resource type="PackedScene" uid="uid://cdh6cfu8bqvru" path="res://scenes/gui/white_transition.tscn" id="3_k43ob"]
 [ext_resource type="Texture2D" uid="uid://bokibac55ubu8" path="res://assets/sprites/tilesets/skybox.png" id="4_5tpx0"]
-[ext_resource type="PackedScene" uid="uid://dlcyn6ee23wh8" path="res://scenes/level elements/kill_zone.tscn" id="4_8v0wa"]
+[ext_resource type="PackedScene" uid="uid://dlcyn6ee23wh8" path="res://scenes/level elements/hazards/kill_zone.tscn" id="4_8v0wa"]
 [ext_resource type="PackedScene" uid="uid://bvhy3fxp771m" path="res://scenes/level elements/platforms/moving_platform_large.tscn" id="4_koekj"]
 [ext_resource type="PackedScene" uid="uid://cracx5v18dj3y" path="res://scenes/level elements/coin.tscn" id="5_im2du"]
 [ext_resource type="PackedScene" uid="uid://vpenuoniuqnh" path="res://scenes/level elements/checkpoint.tscn" id="5_kw13u"]
-[ext_resource type="PackedScene" uid="uid://bsidhdb6n75fn" path="res://scenes/level elements/exit_area.tscn" id="5_ymnbo"]
-[ext_resource type="PackedScene" uid="uid://dl86guqiptq88" path="res://scenes/death.tscn" id="12_wu1oq"]
+[ext_resource type="PackedScene" uid="uid://bsidhdb6n75fn" path="res://scenes/level elements/doors/exit_area.tscn" id="5_ymnbo"]
+[ext_resource type="PackedScene" uid="uid://dl86guqiptq88" path="res://scenes/gui/death.tscn" id="12_wu1oq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wu1oq"]
 texture = ExtResource("4_5tpx0")

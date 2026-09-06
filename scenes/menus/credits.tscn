@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bj34im4420pal"]
 
 [ext_resource type="FontFile" uid="uid://bs5cbekjginbs" path="res://assets/fonts/vcr.ttf" id="1_0bpdh"]
-[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/scrolling_bg.tscn" id="1_2fbfq"]
+[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/bgs/scrolling_bg.tscn" id="1_2fbfq"]
 [ext_resource type="AudioStream" uid="uid://isupx611sdtf" path="res://assets/music/story.mp3" id="2_2ckv8"]
-[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/return_to_menu_button.tscn" id="3_0ctdu"]
+[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/gui/return_to_menu_button.tscn" id="3_0ctdu"]
 
 [node name="Credits" type="Control" unique_id=1425365783]
 layout_mode = 3

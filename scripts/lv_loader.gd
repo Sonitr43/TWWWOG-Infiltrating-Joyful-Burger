@@ -72,16 +72,16 @@ func _ready() -> void:
 		# trova el jugador, això per determinar què escrivim en el text que mostra quin nivell es jugarà.
 			1:
 			# Si estem en el primer nivell, ho escrivim.
-				level_text.text = "NIVELL 1-1"
+				level_text.text = "NIVELL 1"
 			2:
 			# Si estem en el segon nivell, ho escrivim.
-				level_text.text = "NIVELL 1-2"
+				level_text.text = "NIVELL 2"
 			3:
 			# Si estem en el tercer nivell, ho escrivim.
-				level_text.text = "NIVELL 1-3"
+				level_text.text = "NIVELL 3"
 			_:
 			# Si estem en un nivell desconegut, ho escrivim.
-				level_text.text = "NIVELL  -1"
+				level_text.text = "NIVELL -1"
 		
 		loading_timer.start()
 		# Comencem el temporitzador.
@@ -101,7 +101,7 @@ func _on_loading_timer_timeout() -> void:
 			get_tree().change_scene_to_file("res://scenes/levels/level_3.scn")
 		_:
 		# Si estem en un de desconegut, carreguem el nivell de prova.
-			get_tree().change_scene_to_file("res://scenes/levels/test_zone.scn")
+			get_tree().change_scene_to_file("res://scenes/levels/test.tscn")
 
 func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
 # Funció que s'executa quan un dels botons per saltar (o no) el tutorial és pulsat.

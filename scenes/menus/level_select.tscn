@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cubsnd4g8322r"]
 
-[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/scrolling_bg.tscn" id="1_2epne"]
+[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/bgs/scrolling_bg.tscn" id="1_2epne"]
 [ext_resource type="Script" uid="uid://cyn1j6kqmedpj" path="res://scripts/level_select.gd" id="1_rif6e"]
 [ext_resource type="FontFile" uid="uid://me3qtpdaq7w5" path="res://assets/fonts/old_windows.ttf" id="2_rif6e"]
-[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/return_to_menu_button.tscn" id="4_rif6e"]
+[ext_resource type="PackedScene" uid="uid://bp72dj77fyonw" path="res://scenes/gui/return_to_menu_button.tscn" id="4_rif6e"]
 [ext_resource type="AudioStream" uid="uid://86ncm55qyutr" path="res://assets/sounds/snd_select.wav" id="5_chg43"]
 [ext_resource type="AudioStream" uid="uid://cqpug4ceqeism" path="res://assets/music/lv_select.ogg" id="5_r77uv"]
 

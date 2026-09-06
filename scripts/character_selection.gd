@@ -20,7 +20,7 @@ func _on_button_gumball_pressed() -> void:
 		# Indiquem que ja ho estem.
 		GameManager.PlayerCharacter = 0
 		# Indiquem que estem jugant com a Gumball.
-		get_tree().change_scene_to_file("res://scenes/level elements/lv_loader.tscn")
+		get_tree().change_scene_to_file("res://scenes/level elements/gui/lv_loader.tscn")
 		# Canviem l'escena a la del primer nivell.
 
 func _on_button_darwin_pressed() -> void:
@@ -31,5 +31,5 @@ func _on_button_darwin_pressed() -> void:
 		# Indiquem que ja ho estem.
 		GameManager.PlayerCharacter = 1
 		# Indiquem que estem jugant com a Darwin.
-		get_tree().change_scene_to_file("res://scenes/level elements/lv_loader.tscn")
+		get_tree().change_scene_to_file("res://scenes/level elements/gui/lv_loader.tscn")
 		# Canviem l'escena a la del primer nivell.

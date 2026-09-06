@@ -1,7 +1,7 @@
 # Script per la pantalla d'advertència.
 extends Control
 
-var bt_scene = load("res://scenes/black_transition.tscn").instantiate()
+var bt_scene = load("res://scenes/gui/black_transition.tscn").instantiate()
 # Carreguem en una variable l'escena de la pantalla negra de transició. No la col·loquem
 # directament en l'escena perquè sinó no funcionen els botons de l'ItemList.
 @onready var item_list: ItemList = $VBoxContainer/ItemList
@@ -47,5 +47,5 @@ func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button
 			# Si hem seleccionat que no:
 				GameManager.flashing_lights = true
 				# Activem les llums intermitents.
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 		 # Finalment, canviem l'escena a la de la pantalla del menú principal.

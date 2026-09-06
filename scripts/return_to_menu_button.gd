@@ -1,7 +1,7 @@
 # Script per al botó per tornar al menú principal.
 extends Button
 
-var bt_scene = load("res://scenes/black_transition.tscn").instantiate()
+var bt_scene = load("res://scenes/gui/black_transition.tscn").instantiate()
 # Carreguem en una variable l'escena de la pantalla negra de transició. No la col·loquem
 # directament en l'escena perquè sinó no funcionen els botons de l'ItemList.
 @export var song: AudioStreamPlayer
@@ -33,5 +33,5 @@ func _on_pressed() -> void:
 	await fadeIn.finished
 	# Esperem a que finalitzi el tween.
 	
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 	# Canviem l'escena a la de la pantalla del menú principal.
