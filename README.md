@@ -1,5 +1,5 @@
 # TWWWOG: Infiltrating Joyful Burger
-A 2D platformer based on The Wonderfully Weird World of Gumball made for a school project.
+A 2D platformer based on The Wonderfully Weird World of Gumball, made for a school project.
 
 ![Infiltrating Joyful Burger logo](icon_full.png)
 
