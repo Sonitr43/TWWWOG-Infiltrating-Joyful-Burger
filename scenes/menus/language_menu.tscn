@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://b11l7idqaffm"]
+
+[ext_resource type="Script" uid="uid://dlv8qa75dw422" path="res://scripts/language_menu.gd" id="1_lo1f6"]
+[ext_resource type="PackedScene" uid="uid://brpjinq1db7ef" path="res://scenes/level elements/bgs/scrolling_bg.tscn" id="1_s6opo"]
+[ext_resource type="FontFile" uid="uid://bs5cbekjginbs" path="res://assets/fonts/vcr.ttf" id="2_87mda"]
+[ext_resource type="AudioStream" uid="uid://86ncm55qyutr" path="res://assets/sounds/snd_select.wav" id="4_e8u7v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a7611"]
+font = ExtResource("2_87mda")
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_lo1f6"]
+
+[node name="LanguageMenu" type="Control" unique_id=294412074]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lo1f6")
+
+[node name="ScrollingBG" parent="." unique_id=2097112336 instance=ExtResource("1_s6opo")]
+layer = -1
+
+[node name="TextureRect" parent="ScrollingBG/Control" parent_id_path=PackedInt32Array(2097112336, 1182965001) index="0" unique_id=678288818]
+modulate = Color(0.31, 0.31, 0.31, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=749692825]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1896417826]
+layout_mode = 2
+text = "Select your language
+Selecciona tu idioma
+Selecciona el teu idioma"
+label_settings = SubResource("LabelSettings_a7611")
+horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer" unique_id=1404511593]
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+theme = SubResource("Theme_lo1f6")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hovered_color = Color(1, 0.9837344, 0.25447002, 1)
+theme_override_colors/font_hovered_selected_color = Color(0, 1, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 24
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_87mda")
+theme_override_font_sizes/font_size = 48
+allow_rmb_select = true
+auto_width = true
+auto_height = true
+item_count = 3
+same_column_width = true
+icon_mode = 0
+icon_scale = 4.0
+item_0/text = "English"
+item_1/text = "Español"
+item_2/text = "Català"
+metadata/_edit_use_anchors_ = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=94990946]
+stream = ExtResource("4_e8u7v")
+bus = &"SFX"
+
+[connection signal="item_clicked" from="VBoxContainer/ItemList" to="." method="_on_item_list_item_clicked"]
+
+[editable path="ScrollingBG"]

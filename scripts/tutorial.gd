@@ -5,11 +5,25 @@ extends Node2D
 # Creem una variable i l'assignem el bloc negre que fa de transició.
 @onready var music: AudioStreamPlayer = $Music
 # Creem una variable per al node de l'àudio de la cançó de fons.
-var dialogue_start = preload("res://dialogues/tutorial/Larry0.dialogue")
+var lang = ""
+var full_path
+var dialogue_start
 # Precarreguem dins d'una variable el diàleg de Larry en entrar al tutorial.
 
 func _ready() -> void:
 # Funció que s'executa quan el node i els seus fills entren a l'escena d'arbres.
+	match GameManager.language:
+		0:
+			lang = "en"
+		1:
+			lang = "es"
+		2:
+			lang = "ca"
+	
+	full_path = "res://dialogues/tutorial/" + lang + "/Larry0.dialogue"
+	
+	dialogue_start = load(full_path)
+	# Precarreguem dins d'una variable el diàleg de Larry en entrar al tutorial.
 	GameManager.shouldMove = false
 	# Fem que el jugador no es pugui moure.
 	var tween = create_tween()

@@ -1,6 +1,8 @@
 # Script per al menú de les opcions.
 extends Control
 
+@onready var language_button: OptionButton = $VBoxContainer/LanguageButton
+# Creem una variable per al menú desplegable dels llenguatges.
 @onready var flashing_lights_check_box: CheckBox = $VBoxContainer/FlashingLightsCheckBox
 # Creem una variable per a la casella de selecció per activar/desactivar les llums intermitents.
 @onready var resolution_button: OptionButton = $VBoxContainer/ResolutionButton
@@ -16,6 +18,7 @@ extends Control
 
 func _ready() -> void:
 # Funció que s'executa quan el node i els seus fills entren en l'arbre d'escenes.
+	language_button.select(GameManager.language)
 	flashing_lights_check_box.button_pressed = GameManager.flashing_lights
 	resolution_button.select(GameManager.window_size)
 	fullscreen_check_box.button_pressed = GameManager.fullscreen
@@ -30,6 +33,24 @@ func _exit_tree() -> void:
 	GameManager.volume_music = volume_slider_music.value
 	GameManager.volume_sfx = volume_slider_sfx.value
 	# Guardem el valor del volum dels busos d'àudio dins de les seves variables respectives al singleton.
+
+func _on_language_button_item_selected(index: int) -> void:
+# Funció que s'executa quan canviem d'opció en el menú desplegable per canviar el llenguatge.
+	match index:
+	# Comparem el valor de l'ID de l'ítem seleccionat, llavors actualitzem el llenguatge
+	# i actualitzem el valor de la variable "language" del singleton.
+		0:
+		# ID 0:
+			TranslationServer.set_locale("en")
+			GameManager.language = 0
+		1:
+		# ID 1:
+			TranslationServer.set_locale("es")
+			GameManager.language = 1
+		2:
+		# ID 2:
+			TranslationServer.set_locale("ca")
+			GameManager.language = 2
 
 func _on_resolution_button_item_selected(index: int) -> void:
 # Funció que s'executa quan canviem d'opció en el menú desplegable per canviar la resolució.

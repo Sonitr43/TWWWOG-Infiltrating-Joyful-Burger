@@ -2,6 +2,8 @@
 extends Node
 
 # CONFIGURACIONS
+var language: int = 0
+# Variable per saber quin idioma ha seleccionat el jugador.
 var flashing_lights: bool = false
 # Variable que determina si el joc pot reproduir certs events que poden ser perjudicials per a persones amb epilèpsia.
 var window_size: int = 0

@@ -1,0 +1,6 @@
+~ start
+Larry: As I mentioned earlier, [wait=0.5]with [color=cyan]Gumball [color=white]you can [wave]climb walls[/wave].
+Larry: You need to take into account that [color=red]it only lasts some seconds[color=white], so you gotta be careful to not fall unexpectedly!
+Larry: But anyways, here's how you do it:\n\n[wait=1]To climb a wall you need to be [color=yellow]running[color=white], hold [color=yellow]up [color=white](↑ or W) and [color=yellow]jump before touching it[color=white].
+Larry: Got it? [wave]Run, hold up and jump[/wave], all that before touching the wall.
+=> END

@@ -1,0 +1,6 @@
+~ start
+Larry: What do you need?
+- Exit the tutorial
+	Larry: Oh, really? [wait=0.5]Well, if you feel like you're ready to go, you can travel directly to Joyful Burguer going through the [color=yellow]door behind you[color=white].
+- Nothing
+=> END

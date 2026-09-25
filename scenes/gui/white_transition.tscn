@@ -38,6 +38,6 @@ offset_right = -236.0
 offset_bottom = -16.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "NIVELL COMPLETAT"
+text = "LV_BEATEN"
 label_settings = SubResource("LabelSettings_a7611")
 metadata/_edit_use_anchors_ = true

@@ -35,6 +35,16 @@ func _ready() -> void:
 		# Passem directament al nivell.
 	else:
 	# Sinó:
+		match GameManager.language:
+		# Comparem el valor de la variable del llenguatge dins del singleton per determinar
+		# el llenguatge del text que diu en què nivell es trova el jugador.
+			0:
+				level_text.text = "LEVEL "
+			1:
+				level_text.text = "NIVEL "
+			2:
+				level_text.text = "NIVELL "
+				
 		v_box_container.visible = false
 		# Fem invisible el text i els botons per poder saltar el tutorial.
 		GameManager.shouldMove = true
@@ -65,23 +75,22 @@ func _ready() -> void:
 				# Actualitzem el text de les vides de Gumball per mostrar-les.
 				darwin_container.hide()
 				# Amaguem el contenidor de Darwin.
-			pass
 		
 		match GameManager.current_lv:
 		# Comparem el valor de la variable dins de l'script global que determina en quin nivell es
-		# trova el jugador, això per determinar què escrivim en el text que mostra quin nivell es jugarà.
+		# trova el jugador, això per determinar quin nombre escrivim al costat del text del nivell.
 			1:
 			# Si estem en el primer nivell, ho escrivim.
-				level_text.text = "NIVELL 1"
+				level_text.text = level_text.text + "1"
 			2:
 			# Si estem en el segon nivell, ho escrivim.
-				level_text.text = "NIVELL 2"
+				level_text.text = level_text.text + "2"
 			3:
 			# Si estem en el tercer nivell, ho escrivim.
-				level_text.text = "NIVELL 3"
+				level_text.text = level_text.text + "3"
 			_:
 			# Si estem en un nivell desconegut, ho escrivim.
-				level_text.text = "NIVELL -1"
+				level_text.text = level_text.text + "-1"
 		
 		loading_timer.start()
 		# Comencem el temporitzador.

@@ -57,70 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("1_0bpdh")
 theme_override_font_sizes/normal_font_size = 24
-text = "Sonitr43
-- Programació
-- Idees
-- Art
-- Cançó de la pantalla de selecció de personatges
-- Història
-
-La història està basada en el primer capítol de The Wonderfully Weird World of Gumball.
-
-Playtesters:
-- Häzel
-- elegheo
-- 
-- 
-- 
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-Música:
-- Tutorial / Menú de les opcions
-	Friday Night Funkin' - Artistic Expression
-	Kawai Sprite
-
-- Menú de la història / Menú dels crèdits
-	Sonic's Mega Collection - Extras (Remix)
-	Cançó original: Hideaki Kobayashi
-	Remix: ???
-
-- Selector de nivells
-	Vs. Dave and Bambi: Volume 1 - Character Select
-	MoldyGangstaHero
-
-- Nivells 1 i 2
-	Super Mario All Stars - Overworld (Super Mario Bros. 3)
-	Koji Kondo
-
-- Passar-se un nivell
-	Super Mario All Stars - Course Clear (Super Mario Bros. 3)
-	Koji Kondo
-
-- Nivell 3
-	Super Mario All Stars - Athletic (Super Mario Bros. 3)
-	Koji Kondo
-
-- Nivell 3 (sota l'aigua)
-	Super Mario All Stars - Underwater (Super Mario Bros. 3)
-	Koji Kondo
-
-- Pantalla final del joc
-	Sonic 3 [Alternate] - Competition Menu
-	Leila Wilson [Woofle]
-
-
-Efectes de so:
-- Super Mario Bros. 3
-- Undertale
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-The Wonderfully Weird World of Gumball és propietat de Hanna-Barbera Studios Europe Ltd."
+text = "CREDITS_TXT"
 metadata/_edit_use_anchors_ = true
 
 [node name="ReturnToMenuButton" parent="." unique_id=1759334569 node_paths=PackedStringArray("song") instance=ExtResource("3_0ctdu")]

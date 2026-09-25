@@ -1,0 +1,4 @@
+~ start
+Larry: ¡Muy bien! [wait=1]Si has llegado hasta aquí, significa que [color=green]ya estás preparado para irte a la sede de Joyful Burger[color=white].
+Larry: Pasa por esta puerta y ya podrás irte. [wait=0.5]¡Buena suerte!
+=> END

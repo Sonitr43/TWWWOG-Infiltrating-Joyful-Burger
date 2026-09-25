@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bhr4atw622xap"
+path="res://.godot/imported/Larry0.dialogue-031e70f4c55279352dd09ca62fb51622.tres"
+
+[deps]
+
+source_file="res://dialogues/tutorial/ca/Larry0.dialogue"
+dest_files=["res://.godot/imported/Larry0.dialogue-031e70f4c55279352dd09ca62fb51622.tres"]
+
+[params]
+
+defaults=true

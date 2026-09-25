@@ -1,0 +1,6 @@
+~ start
+Larry: ¿Qué necesitas?
+- Salir del tutorial
+	Larry: Vaya, ¿de verdad? [wait=0.5]Bueno, si sientes que ya estás preparado, puedes ir directamente a Joyful Burguer atravesando la [color=yellow]puerta que tienes detrás tuyo[color=white].
+- Nada
+=> END

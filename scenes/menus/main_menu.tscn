@@ -79,10 +79,10 @@ max_columns = 4
 same_column_width = true
 icon_mode = 0
 icon_scale = 4.0
-item_0/text = "JUGAR"
-item_1/text = "HISTÒRIA"
-item_2/text = "OPCIONS"
-item_3/text = "EXTRES"
+item_0/text = "MENU_PLAY"
+item_1/text = "MENU_STORY"
+item_2/text = "MENU_OPTIONS"
+item_3/text = "MENU_EXTRAS"
 metadata/_edit_use_anchors_ = true
 
 [node name="SFX" type="AudioStreamPlayer" parent="." unique_id=352064904]

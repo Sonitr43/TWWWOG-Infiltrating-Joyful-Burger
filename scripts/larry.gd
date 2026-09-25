@@ -10,7 +10,8 @@ var is_player_close: bool = false
 # Variable per determinar si el jugador està a prop de l'àrea o no.
 var is_dialogue_active: bool = false
 # Variable per determinar si hi ha diàleg actiu o no.
-var dialogue_path = "res://dialogues/tutorial/"
+var lang
+var dialogue_path
 # Variable per emmagatzemar una part de la ruta on estan els diàlegs.
 var dialogue_full
 # Variable per emmagatzemar la ruta completa del diàleg que aquet node de Larry reproduirà.
@@ -23,6 +24,16 @@ func _ready() -> void:
 # Funció que s'executa quan el node i els seus fills entra en l'arbre d'escenes.
 	await get_tree().process_frame
 	# Esperem a que tot l'arbre d'escenes es carregui per tal de poder trovar el node del jugador.
+	match GameManager.language:
+		0:
+			lang = "en/"
+		1:
+			lang = "es/"
+		2:
+			lang = "ca/"
+	
+	dialogue_path = "res://dialogues/tutorial/" + lang
+	# Variable per emmagatzemar una part de la ruta on estan els diàlegs.
 	player = get_tree().root.find_child("Player", true, false)
 	# Obtenim el node del jugador dins de l'arbre d'escenes.
 	var dialogue_name = get_name()

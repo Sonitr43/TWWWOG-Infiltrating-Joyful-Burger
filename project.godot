@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TWWWOG: Infiltrating Joyful Burger"
-run/main_scene="uid://cpuqfspcnbpmy"
+run/main_scene="uid://b11l7idqaffm"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -90,7 +90,8 @@ move_up={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/tutorial/Larry0.dialogue", "res://dialogues/tutorial/Larry2.dialogue", "res://dialogues/tutorial/Larry6.dialogue", "res://dialogues/tutorial/Larry1.dialogue", "res://dialogues/tutorial/Larry3.dialogue", "res://dialogues/tutorial/Larry4.dialogue", "res://dialogues/tutorial/Larry5.dialogue", "res://dialogues/tutorial/Larry7.dialogue", "res://dialogues/tutorial/Larry8.dialogue")
+locale/translations=PackedStringArray("res://translations.es.translation", "res://translations.ca.translation", "res://translations.en.translation")
+locale/translations_pot_files=PackedStringArray("res://dialogues/tutorial/ca/Larry0.dialogue", "res://dialogues/tutorial/ca/Larry1.dialogue", "res://dialogues/tutorial/ca/Larry2.dialogue", "res://dialogues/tutorial/ca/Larry3.dialogue", "res://dialogues/tutorial/ca/Larry4.dialogue", "res://dialogues/tutorial/ca/Larry5.dialogue", "res://dialogues/tutorial/ca/Larry6.dialogue", "res://dialogues/tutorial/ca/Larry7.dialogue", "res://dialogues/tutorial/ca/Larry8.dialogue", "res://dialogues/tutorial/es/Larry2.dialogue", "res://dialogues/tutorial/es/Larry0.dialogue", "res://dialogues/tutorial/es/Larry5.dialogue", "res://dialogues/tutorial/es/Larry6.dialogue", "res://dialogues/tutorial/es/Larry8.dialogue", "res://dialogues/tutorial/es/Larry4.dialogue", "res://dialogues/tutorial/es/Larry3.dialogue", "res://dialogues/tutorial/es/Larry7.dialogue", "res://dialogues/tutorial/es/Larry1.dialogue", "res://dialogues/tutorial/en/Larry2.dialogue", "res://dialogues/tutorial/en/Larry0.dialogue", "res://dialogues/tutorial/en/Larry5.dialogue", "res://dialogues/tutorial/en/Larry6.dialogue", "res://dialogues/tutorial/en/Larry8.dialogue", "res://dialogues/tutorial/en/Larry4.dialogue", "res://dialogues/tutorial/en/Larry3.dialogue", "res://dialogues/tutorial/en/Larry7.dialogue", "res://dialogues/tutorial/en/Larry1.dialogue")
 
 [layer_names]
 
@@ -114,4 +115,6 @@ common/physics_interpolation=true
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true
 2d/snap/snap_2d_transforms_to_pixel=true
